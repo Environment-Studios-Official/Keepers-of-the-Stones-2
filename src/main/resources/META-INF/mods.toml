@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[48,)"
 license="All Rights Reserved"
 
 [[mods]]
@@ -15,7 +15,7 @@ description="Keepers of the Stones II is a mod that was created as a continuatio
 [[dependencies.power]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20.1]"
+    versionRange="[1.20.2]"
     ordering="NONE"
     side="BOTH"
 

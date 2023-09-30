@@ -10,7 +10,6 @@ import ru.power_umc.keepersofthestones.two.procedures.Attack18Procedure;
 import ru.power_umc.keepersofthestones.two.procedures.Attack17Procedure;
 import ru.power_umc.keepersofthestones.two.PowerMod;
 
-import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

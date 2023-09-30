@@ -3,7 +3,6 @@ package ru.power_umc.keepersofthestones.two.network;
 import ru.power_umc.keepersofthestones.two.PowerMod;
 
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

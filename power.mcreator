@@ -145,7 +145,7 @@
       "name": "AirMaster",
       "type": "potioneffect",
       "sortid": 10,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "air_master",
       "metadata": {
@@ -237,7 +237,7 @@
       "name": "DetransformationKey",
       "type": "keybind",
       "sortid": 15,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "detransformation_key",
       "metadata": {
@@ -466,7 +466,7 @@
       "name": "SpecialAttackKey",
       "type": "keybind",
       "sortid": 34,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "special_attack_key",
       "metadata": {
@@ -981,7 +981,7 @@
       "name": "WheelAbilitiesFire",
       "type": "gui",
       "sortid": 61,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "wheel_abilities_fire",
       "metadata": {
@@ -1161,7 +1161,7 @@
       "name": "StoneAttack",
       "type": "rangeditem",
       "sortid": 74,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "stone_attack",
       "metadata": {
@@ -1216,7 +1216,7 @@
       "name": "GrassBlockAttack",
       "type": "rangeditem",
       "sortid": 77,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "grass_block_attack",
       "metadata": {
@@ -1233,7 +1233,7 @@
       "name": "DirtBlockAttack",
       "type": "rangeditem",
       "sortid": 78,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "dirt_block_attack",
       "metadata": {
@@ -2551,7 +2551,7 @@
       "name": "WaterAttack",
       "type": "rangeditem",
       "sortid": 138,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "water_attack",
       "metadata": {
@@ -2600,7 +2600,7 @@
       "name": "WheelAbilitiesWater",
       "type": "gui",
       "sortid": 140,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "wheel_abilities_water",
       "metadata": {
@@ -2616,7 +2616,7 @@
       "name": "WheelAbilitiesEarth",
       "type": "gui",
       "sortid": 141,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "wheel_abilities_earth",
       "metadata": {
@@ -2632,7 +2632,7 @@
       "name": "WheelAbilitiesEther",
       "type": "gui",
       "sortid": 142,
-      "compiles": true,
+      "compiles": false,
       "locked_code": false,
       "registry_name": "wheel_abilities_ether",
       "metadata": {
@@ -2785,8 +2785,8 @@
       "item.power.air_armor_helmet": "Шлем мастера воздуха",
       "item.power.ether_armor_chestplate": "Нагрудник мастера эфира",
       "key.power.special_attack_key": "Клавиша специальной атаки",
-      "item.power.earth_armor_chestplate": "Нагрудник мастера земли",
       "item_group.power.boxes": "Шкатулки",
+      "item.power.earth_armor_chestplate": "Нагрудник мастера земли",
       "gui.power.wheel_abilities_air.tooltip_wind_gust_uses_25_power_points": "Порыв ветра, расходует 25 очков силы",
       "gui.power.wheel_abilities_water.button_2": "2",
       "gui.power.wheel_abilities_water.button_1": "1",
@@ -2853,8 +2853,8 @@
       "item.power.air_armor_helmet": "Air Helmet",
       "item.power.ether_armor_chestplate": "Ether Chestplate",
       "key.power.special_attack_key": "Special attack key",
-      "item_group.power.boxes": "Boxes",
       "item.power.earth_armor_chestplate": "Earth Chestplate",
+      "item_group.power.boxes": "Boxes",
       "gui.power.wheel_abilities_air.tooltip_wind_gust_uses_25_power_points": "Wind gust, uses 25 power points",
       "gui.power.wheel_abilities_water.button_2": "2",
       "gui.power.wheel_abilities_water.button_1": "1",
@@ -3036,7 +3036,7 @@
       "playeranimator",
       "allmods"
     ],
-    "currentGenerator": "forge-1.20.1",
+    "currentGenerator": "forge-1.20.2",
     "credits": "Created by Environment Studios",
     "modElementsPackage": "ru.power_umc.keepersofthestones.two",
     "lockBaseModFiles": false

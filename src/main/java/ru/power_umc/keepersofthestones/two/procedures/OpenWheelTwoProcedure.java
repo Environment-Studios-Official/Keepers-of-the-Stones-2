@@ -7,8 +7,6 @@ import ru.power_umc.keepersofthestones.two.world.inventory.WheelAbilitiesEarthMe
 import ru.power_umc.keepersofthestones.two.world.inventory.WheelAbilitiesAirMenu;
 import ru.power_umc.keepersofthestones.two.network.PowerModVariables;
 
-import net.minecraftforge.network.NetworkHooks;
-
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
