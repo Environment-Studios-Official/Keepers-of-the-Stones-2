@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/golden_dust_stone"
+    "layer0": "power:items/golden_dust_stone"
   },
   "overrides": [
     {

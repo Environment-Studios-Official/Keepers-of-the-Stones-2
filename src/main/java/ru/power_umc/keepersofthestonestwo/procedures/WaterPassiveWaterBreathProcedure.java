@@ -23,7 +23,7 @@ public class WaterPassiveWaterBreathProcedure {
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END) {
-			execute(event, event.player.level(), event.player.getX(), event.player.getY(), event.player.getZ(), event.player);
+			execute(event, event.player.level, event.player.getX(), event.player.getY(), event.player.getZ(), event.player);
 		}
 	}
 
@@ -36,7 +36,7 @@ public class WaterPassiveWaterBreathProcedure {
 			return;
 		double particleRadius = 0;
 		double particleAmount = 0;
-		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(PowerModMobEffects.WATER_MASTER.get())) {
+		if (entity instanceof LivingEntity _livEnt ? _livEnt.hasEffect(PowerModMobEffects.WATER_MASTER.get()) : false) {
 			if (entity.isInWater()) {
 				particleAmount = 8;
 				particleRadius = 2;
@@ -45,7 +45,7 @@ public class WaterPassiveWaterBreathProcedure {
 							(z + 0 + Mth.nextDouble(RandomSource.create(), -1, 1) * particleRadius), (Mth.nextDouble(RandomSource.create(), -0.001, 0.001)), (Mth.nextDouble(RandomSource.create(), -0.001, 0.001)),
 							(Mth.nextDouble(RandomSource.create(), -0.001, 0.001)));
 				}
-				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 					_entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0, false, false));
 				entity.clearFire();
 			}

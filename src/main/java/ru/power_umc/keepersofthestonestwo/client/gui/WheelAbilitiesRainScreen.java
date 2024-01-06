@@ -13,10 +13,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbilitiesRainMenu> {
@@ -43,25 +44,26 @@ public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbili
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 		if (mouseX > leftPos + 82 && mouseX < leftPos + 106 && mouseY > topPos + 22 && mouseY < topPos + 46)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_splash_uses_10"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_splash_uses_10"), mouseX, mouseY);
 		if (mouseX > leftPos + 145 && mouseX < leftPos + 169 && mouseY > topPos + 83 && mouseY < topPos + 107)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_curtain_uses_45"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_curtain_uses_45"), mouseX, mouseY);
 		if (mouseX > leftPos + 82 && mouseX < leftPos + 106 && mouseY > topPos + 144 && mouseY < topPos + 168)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_flying_uses_5"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_rain.tooltip_rain_flying_uses_5"), mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/wheel_of_abilities.png"), this.leftPos + -1, this.topPos + 0, 0, 0, 192, 192, 192, 192);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/wheel_of_abilities.png"));
+		this.blit(ms, this.leftPos + -1, this.topPos + 0, 0, 0, 192, 192, 192, 192);
 
 		RenderSystem.disableBlend();
 	}
@@ -81,17 +83,19 @@ public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbili
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
 	public void onClose() {
 		super.onClose();
+		Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
 	}
 
 	@Override
 	public void init() {
 		super.init();
+		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
 		imagebutton_wheel_button_1 = new ImageButton(this.leftPos + 140, this.topPos + 154, 10, 7, 0, 0, 7, new ResourceLocation("power:textures/screens/atlas/imagebutton_wheel_button_1.png"), 10, 14, e -> {
 			if (GetWheelTwoProcedure.execute(entity)) {
 				PowerMod.PACKET_HANDLER.sendToServer(new WheelAbilitiesRainButtonMessage(0, x, y, z));
@@ -99,9 +103,9 @@ public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelTwoProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_1", imagebutton_wheel_button_1);
@@ -113,9 +117,9 @@ public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelTwoProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_2", imagebutton_wheel_button_2);
@@ -127,9 +131,9 @@ public class WheelAbilitiesRainScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelThreeProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_3", imagebutton_wheel_button_3);

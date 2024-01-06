@@ -1,7 +1,7 @@
 {
   "parent": "power:custom/fire_sword",
   "textures": {
-    "0": "power:block/fire_sword",
-    "particle": "power:item/fire_sword"
+    "0": "power:blocks/fire_sword",
+    "particle": "power:items/fire_sword"
   }
 }

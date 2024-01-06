@@ -1,7 +1,7 @@
 {
   "parent": "power:custom/sound_dagger",
   "textures": {
-    "0": "power:block/sound_dagger",
-    "particle": "power:item/sound_dagger"
+    "0": "power:blocks/sound_dagger",
+    "particle": "power:items/sound_dagger"
   }
 }

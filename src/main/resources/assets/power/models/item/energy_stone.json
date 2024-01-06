@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/energy_stone"
+    "layer0": "power:items/energy_stone"
   },
   "overrides": [
     {

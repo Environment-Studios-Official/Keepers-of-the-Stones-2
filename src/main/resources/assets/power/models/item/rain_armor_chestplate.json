@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/rain_armor_chestplate"
+    "layer0": "power:items/rain_armor_chestplate"
   }
 }

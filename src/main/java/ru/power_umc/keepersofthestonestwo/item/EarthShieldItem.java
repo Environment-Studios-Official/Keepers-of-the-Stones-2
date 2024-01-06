@@ -24,12 +24,12 @@ import com.google.common.collect.ImmutableMultimap;
 
 public class EarthShieldItem extends Item {
 	public EarthShieldItem() {
-		super(new Item.Properties().durability(300));
+		super(new Item.Properties().tab(null).durability(300));
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack itemstack, BlockState blockstate) {
-		return 1;
+		return false ? 0f : 1;
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class EarthShieldItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-		super.appendHoverText(itemstack, world, list, flag);
+	public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+		super.appendHoverText(itemstack, level, list, flag);
 	}
 
 	@Override

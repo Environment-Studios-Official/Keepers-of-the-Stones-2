@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 public class PowerModParticles {
 	@SubscribeEvent
 	public static void registerParticles(RegisterParticleProvidersEvent event) {
-		event.registerSpriteSet(PowerModParticleTypes.BASS_BOOM.get(), BassBoomParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.INSECTS.get(), InsectsParticle::provider);
+		event.register(PowerModParticleTypes.BASS_BOOM.get(), BassBoomParticle::provider);
+		event.register(PowerModParticleTypes.INSECTS.get(), InsectsParticle::provider);
 	}
 }

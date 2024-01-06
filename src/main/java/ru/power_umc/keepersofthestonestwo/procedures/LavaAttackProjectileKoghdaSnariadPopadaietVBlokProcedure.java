@@ -10,8 +10,8 @@ public class LavaAttackProjectileKoghdaSnariadPopadaietVBlokProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		if (world instanceof ServerLevel _level)
 			_level.sendParticles(ParticleTypes.LAVA, x, y, z, 25, 1, 1, 1, 1);
-		if ((world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == Blocks.AIR) {
-			world.setBlock(BlockPos.containing(x, y + 1, z), Blocks.LAVA.defaultBlockState(), 3);
+		if ((world.getBlockState(new BlockPos(x, y + 1, z))).getBlock() == Blocks.AIR) {
+			world.setBlock(new BlockPos(x, y + 1, z), Blocks.LAVA.defaultBlockState(), 3);
 		}
 	}
 }

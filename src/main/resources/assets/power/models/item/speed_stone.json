@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/speed_stone"
+    "layer0": "power:items/speed_stone"
   },
   "overrides": [
     {

@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/plague_stone"
+    "layer0": "power:items/plague_stone"
   },
   "overrides": [
     {

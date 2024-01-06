@@ -33,7 +33,7 @@ public class PowerOverlayOverlay {
 		double z = 0;
 		Player entity = Minecraft.getInstance().player;
 		if (entity != null) {
-			world = entity.level();
+			world = entity.level;
 			x = entity.getX();
 			y = entity.getY();
 			z = entity.getZ();
@@ -46,12 +46,13 @@ public class PowerOverlayOverlay {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		if (true) {
 			if (GetActiveProcedure.execute(entity)) {
-				event.getGuiGraphics().blit(new ResourceLocation("power:textures/screens/power_scale_star.png"), w - 44, h - 21, 0, 0, 16, 16, 16, 16);
+				RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/power_scale_star.png"));
+				Minecraft.getInstance().gui.blit(event.getPoseStack(), w - 44, h - 21, 0, 0, 16, 16, 16, 16);
 			}
 			if (GetActiveProcedure.execute(entity))
-				event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+				Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-						GetPowerScaleProcedure.execute(entity), w - 29, h - 16, -1, false);
+						GetPowerScaleProcedure.execute(entity), w - 29, h - 16, -1);
 		}
 		RenderSystem.depthMask(true);
 		RenderSystem.defaultBlendFunc();

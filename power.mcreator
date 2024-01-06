@@ -10550,6 +10550,7 @@
       "item.power.ether_stone": "Камень эфира",
       "item.power.tornado_armor_helmet": "Шлем мастера торнадо",
       "item.power.earth_hammer": "Земляной молот",
+      "itemGroup.tabstones": "KotS: Stones",
       "effect.power.sound_master": "Мастер звука",
       "item.power.ice_armor_chestplate": "Нагрудник мастера льда",
       "subtitles.ear_ringing": "Звон в ушах",
@@ -10787,6 +10788,7 @@
       "effect.power.plants_master": "Мастер зелени",
       "gui.power.wheel_abilities_animals.tooltip_scorpion_sting_uses_35": "Жало скорпиона, расходует 35",
       "item.power.plants_armor_helmet": "Шлем мастера зелени",
+      "itemGroup.tabitems": "KotS: Items",
       "battery.desc.metal": "Металл",
       "item.power.light_armor_boots": "Ботинки мастера света",
       "item.power.sound_armor_helmet": "Шлем мастера звука",
@@ -10821,6 +10823,7 @@
       "item.power.ether_stone": "Ether Stone",
       "item.power.tornado_armor_helmet": "Tornado Helmet",
       "item.power.earth_hammer": "Earth Hammer",
+      "itemGroup.tabstones": "KotS: Stones",
       "effect.power.sound_master": "Master of Sound",
       "item.power.ice_armor_chestplate": "Ice Chestplate",
       "subtitles.ear_ringing": "Ear ringing",
@@ -11058,6 +11061,7 @@
       "effect.power.plants_master": "Master of Plants",
       "gui.power.wheel_abilities_animals.tooltip_scorpion_sting_uses_35": "Scorpion sting, uses 35",
       "item.power.plants_armor_helmet": "Plants Helmet",
+      "itemGroup.tabitems": "KotS: Items",
       "battery.desc.metal": "Metal",
       "item.power.light_armor_boots": "Light Boots",
       "item.power.sound_armor_helmet": "Sound Helmet",
@@ -11513,10 +11517,10 @@
       "playeranimator",
       "allmods"
     ],
-    "currentGenerator": "forge-1.20.1",
+    "currentGenerator": "forge-1.19.2",
     "credits": "Created by Environment Studios with support Linnett Biomes Team",
     "modElementsPackage": "ru.power_umc.keepersofthestonestwo",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202300450500
+  "mcreatorVersion": 202300452316
 }

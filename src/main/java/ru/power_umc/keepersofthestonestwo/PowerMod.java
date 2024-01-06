@@ -53,19 +53,18 @@ public class PowerMod {
 
 	public PowerMod() {
 		MinecraftForge.EVENT_BUS.register(this);
+		PowerModTabs.load();
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		PowerModSounds.REGISTRY.register(bus);
 
 		PowerModItems.REGISTRY.register(bus);
 		PowerModEntities.REGISTRY.register(bus);
 
-		PowerModTabs.REGISTRY.register(bus);
-
 		PowerModMobEffects.REGISTRY.register(bus);
 
 		PowerModParticleTypes.REGISTRY.register(bus);
-
 		PowerModMenus.REGISTRY.register(bus);
+
 	}
 
 	private static final String PROTOCOL_VERSION = "1";

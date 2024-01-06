@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/mushrooms_stone"
+    "layer0": "power:items/mushrooms_stone"
   },
   "overrides": [
     {

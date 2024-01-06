@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/smoke_stone"
+    "layer0": "power:items/smoke_stone"
   },
   "overrides": [
     {

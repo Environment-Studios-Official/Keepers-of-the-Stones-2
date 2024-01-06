@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 public class GettingStoneProcedure {
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		execute(event, event.getEntity().level(), event.getEntity());
+		execute(event, event.getEntity().level, event.getEntity());
 	}
 
 	public static void execute(LevelAccessor world, Entity entity) {

@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/destruction_stone"
+    "layer0": "power:items/destruction_stone"
   },
   "overrides": [
     {

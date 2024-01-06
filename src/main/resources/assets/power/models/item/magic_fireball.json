@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/magic_fireball"
+    "layer0": "power:items/magic_fireball"
   },
   "display": {
     "thirdperson_righthand": {

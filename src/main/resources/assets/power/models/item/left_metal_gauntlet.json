@@ -1,7 +1,7 @@
 {
   "parent": "power:custom/left_metal_gauntlet",
   "textures": {
-    "1": "power:block/metal_gauntlets",
-    "particle": "power:item/metal_gauntlets"
+    "1": "power:blocks/metal_gauntlets",
+    "particle": "power:items/metal_gauntlets"
   }
 }

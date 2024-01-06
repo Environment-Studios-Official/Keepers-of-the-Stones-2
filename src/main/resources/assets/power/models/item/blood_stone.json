@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/blood_stone"
+    "layer0": "power:items/blood_stone"
   },
   "overrides": [
     {

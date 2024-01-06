@@ -32,11 +32,11 @@ public class OceanPassiveConduitProcedure {
 			return;
 		double particleRadius = 0;
 		double particleAmount = 0;
-		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(PowerModMobEffects.OCEAN_MASTER.get())) {
+		if (entity instanceof LivingEntity _livEnt ? _livEnt.hasEffect(PowerModMobEffects.OCEAN_MASTER.get()) : false) {
 			if (entity.isInWater()) {
 				particleAmount = 8;
 				particleRadius = 2;
-				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 					_entity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 400, 0, false, false));
 			}
 		}

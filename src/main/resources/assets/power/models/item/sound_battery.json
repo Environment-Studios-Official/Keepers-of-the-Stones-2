@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/sound_battery"
+    "layer0": "power:items/sound_battery"
   }
 }

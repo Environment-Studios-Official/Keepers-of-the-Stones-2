@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "power:item/sound_stone"
+    "layer0": "power:items/sound_stone"
   },
   "overrides": [
     {

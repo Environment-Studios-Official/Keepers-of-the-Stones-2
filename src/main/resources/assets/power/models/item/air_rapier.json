@@ -1,7 +1,7 @@
 {
   "parent": "power:custom/air_rapier",
   "textures": {
-    "0": "power:block/air_rapier",
-    "particle": "power:item/air_rapier"
+    "0": "power:blocks/air_rapier",
+    "particle": "power:items/air_rapier"
   }
 }

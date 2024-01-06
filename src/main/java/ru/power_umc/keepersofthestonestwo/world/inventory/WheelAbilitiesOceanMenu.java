@@ -38,7 +38,7 @@ public class WheelAbilitiesOceanMenu extends AbstractContainerMenu implements Su
 	public WheelAbilitiesOceanMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		super(PowerModMenus.WHEEL_ABILITIES_OCEAN.get(), id);
 		this.entity = inv.player;
-		this.world = inv.player.level();
+		this.world = inv.player.level;
 		this.internal = new ItemStackHandler(0);
 		BlockPos pos = null;
 		if (extraData != null) {
