@@ -11488,7 +11488,6 @@
     "modPicture": "logo",
     "requiredMods": [
       "kleiders_custom_renderer",
-      "geckolib",
       "playeranimator"
     ],
     "dependencies": [
