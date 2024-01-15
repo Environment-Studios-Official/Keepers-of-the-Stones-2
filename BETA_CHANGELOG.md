@@ -1,8 +1,10 @@
-What's new in Keepers of the Stones version II 1.0.0.6?<br />
-<br />- Added new elements (Plants, Animals and Metal)
-<br />- Added a battery system (without battery charger)
-<br />- Added star potions
-<br />- Added hand waving animation when using abilities
-<br />- Change in required mod dependencies
-<br />- Removed level system
-<br />- [Bugfix] 
+What's new in Keepers of the Stones version II 1.0.0.8?<br />
+**#WARNING! Some features may not be displayed correctly on clients due to poor synchronization.**
+<br />- Star potion now has a glow
+<br />- Improved generation of energium ore
+<br />- The third ability of the element of metal has been redesigned
+<br />- [Bugfix] Fixed particles when using the third ability of the element of light
+<br />- [Bugfix] Fixed damage to the elements of metal and earth
+<br />- [Bugfix] Fixed a bug that made shadows practically invulnerable
+<br />- [Bugfix] Fixed a bug with mixed textures of energium armor
+<br />- [Bugfix] Fixed a bug where the source of damage from elemental abilities was not determined
