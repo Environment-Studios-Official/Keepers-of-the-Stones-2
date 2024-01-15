@@ -195,6 +195,6 @@ public class LightMasterStartProcedure {
 			if (_entity instanceof Player _player)
 				_player.getInventory().setChanged();
 		}
-		(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).enchant(Enchantments.VANISHING_CURSE, 1);
+		((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)).enchant(Enchantments.VANISHING_CURSE, 1);
 	}
 }

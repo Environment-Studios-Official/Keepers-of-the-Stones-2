@@ -119,18 +119,12 @@ public class PowerModEntities {
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-<<<<<<< HEAD
-=======
 			ShadowEntity.init();
->>>>>>> beta
 		});
 	}
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-<<<<<<< HEAD
-=======
 		event.put(SHADOW.get(), ShadowEntity.createAttributes().build());
->>>>>>> beta
 	}
 }

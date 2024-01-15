@@ -11,22 +11,16 @@
   "subtitles.ear_ringing": "Звон в ушах",
   "item.power.sound_armor_leggings": "Поножи мастера звука",
   "gui.power.wheel_abilities_air.tooltip_wind_gust_uses_25_power_points": "Порыв ветра, расходует 35",
-  "item.power.lightning_battery": "Батарея",
-  "gui.power.wheel_abilities_sound.tooltip_sound_bomb_uses_30": "Звуковая бомба, расходует 30",
   "effect.power.ocean_master": "Мастер океана",
-<<<<<<< HEAD
-=======
+  "gui.power.wheel_abilities_sound.tooltip_sound_bomb_uses_30": "Звуковая бомба, расходует 30",
+  "item.power.lightning_battery": "Батарея",
   "item.power.vacuum_armor_chestplate": "Нагрудник мастера пустоты",
->>>>>>> beta
   "key.power.ability_using_key": "Клавиша использования способности",
   "item.power.energium_shovel": "Энерджиумная лопата",
   "battery.desc.fire": "Огонь",
   "item.power.crystal_armor_boots": "Ботинки мастера кристалла",
   "item.power.earth_battery": "Батарея",
-<<<<<<< HEAD
-=======
   "effect.power.vacuum_master": "Мастер пустоты",
->>>>>>> beta
   "item.power.lightning_armor_chestplate": "Нагрудник мастера молнии",
   "item.power.lightning_armor_helmet": "Шлем мастера молнии",
   "gui.power.wheel_abilities_lava.tooltip_melting_uses_50": "Плавление, расходует 50",
@@ -34,21 +28,15 @@
   "item_group.power.items": "KotS: Предметы",
   "item.power.water_katana": "Водная катана",
   "gui.power.wheel_abilities_animals.tooltip_wolf_pack_uses_60": "Волчья стая, расходует 60",
-  "battery.desc.ice": "Лёд",
-<<<<<<< HEAD
-=======
-  "item.power.animals_armor_boots": "Ботинки мастера животных",
   "gui.power.wheel_abilities_water.tooltip_healing_water_uses_30_power_poi": "Целебная вода, расходует 30",
->>>>>>> beta
-  "item.power.lava_hammer": "Лавовый молот",
+  "item.power.animals_armor_boots": "Ботинки мастера животных",
+  "battery.desc.ice": "Лёд",
   "effect.power.rain_master": "Мастер дождя",
+  "item.power.lava_hammer": "Лавовый молот",
   "gui.power.wheel_abilities_ice.tooltip_freezing_ray_uses_10": "Замораживающий луч, расходует 10",
   "effect.power.crystal_master": "Мастер кристалла",
   "item.power.ocean_armor_chestplate": "Нагрудник мастера океана",
-<<<<<<< HEAD
-=======
   "item.power.shadow_armor_chestplate": "Нагрудник мастера тени",
->>>>>>> beta
   "item.power.plants_stone": "Камень зелени",
   "item.power.ice_armor_helmet": "Шлем мастера льда",
   "item.power.tornado_axe": "Топор торнадо",
@@ -153,7 +141,7 @@
   "item.power.crystal_armor_leggings": "Поножи мастера кристалла",
   "item.power.vacuum_armor_boots": "Ботинки мастера пустоты",
   "item.power.water_stone": "Камень воды",
-  "gui.power.wheel_abilities_plants.tooltip_cherry_wind_uses_10": "Цветочные споры, расходует 10",
+  "gui.power.wheel_abilities_plants.tooltip_cherry_wind_uses_10": "Вишнёвый ветер, расходует 10",
   "item.power.fire_armor_leggings": "Поножи мастера огня",
   "item.power.earth_armor_boots": "Ботинки мастера земли",
   "item.power.shadow_stone": "Камень тени",
@@ -282,6 +270,7 @@
   "item.power.mind_stone": "Камень разума",
   "item.power.ocean_armor_helmet": "Шлем мастера океана",
   "item.power.rain_bow": "Дождевой Лук",
+  "gamerule.stoneDistribution.description": "Раздача камней при входе игроков в игру. По умолчанию включена.",
   "item.power.light_armor_helmet": "Шлем мастера света",
   "item.power.vacuum_dagger": "Пустотный кинжал",
   "item.power.air_battery": "Батарея",
@@ -290,6 +279,7 @@
   "item.power.light_stone": "Камень света",
   "item.power.water_armor_helmet": "Шлем мастера воды",
   "item.power.ice_battery": "Батарея",
+  "gamerule.stoneDistribution": "Distribution of stones at the entrance to the server",
   "item.power.sound_dagger": "Звуковой кинжал",
   "item.power.sand_stone": "Камень песка",
   "item.power.lightning_armor_boots": "Ботинки мастера молнии",
@@ -298,12 +288,9 @@
   "effect.power.plants_master": "Мастер зелени",
   "gui.power.wheel_abilities_animals.tooltip_scorpion_sting_uses_35": "Жало скорпиона, расходует 35",
   "item.power.plants_armor_helmet": "Шлем мастера зелени",
-<<<<<<< HEAD
-  "itemGroup.tabitems": "KotS: Items",
-=======
   "item.power.shadow_armor_boots": "Ботинки мастера тени",
+  "itemGroup.tabitems": "KotS: Items",
   "block.power.energium_block": "Блок энерджиума",
->>>>>>> beta
   "battery.desc.metal": "Металл",
   "item.power.light_armor_boots": "Ботинки мастера света",
   "item.power.sound_armor_helmet": "Шлем мастера звука",

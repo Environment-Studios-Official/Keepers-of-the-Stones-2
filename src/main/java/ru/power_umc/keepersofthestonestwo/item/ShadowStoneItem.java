@@ -2,6 +2,7 @@
 package ru.power_umc.keepersofthestonestwo.item;
 
 import ru.power_umc.keepersofthestonestwo.procedures.ShadowStoneUseProcedure;
+import ru.power_umc.keepersofthestonestwo.init.PowerModTabs;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class ShadowStoneItem extends Item {
 	public ShadowStoneItem() {
-		super(new Item.Properties().tab(null).stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_STONES).stacksTo(1).fireResistant().rarity(Rarity.COMMON));
 	}
 
 	@Override

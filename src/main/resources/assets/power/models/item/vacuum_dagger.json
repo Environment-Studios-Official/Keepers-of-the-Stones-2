@@ -1,7 +1,7 @@
 {
   "parent": "power:custom/vacuum_dagger",
   "textures": {
-    "missing": "power:block/vacuum_dagger",
-    "particle": "power:item/vacuum_dagger"
+    "missing": "power:blocks/vacuum_dagger",
+    "particle": "power:items/vacuum_dagger"
   }
 }

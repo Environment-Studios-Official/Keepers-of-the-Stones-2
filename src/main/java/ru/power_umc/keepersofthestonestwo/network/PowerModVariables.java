@@ -37,7 +37,7 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PowerModVariables {
-	public static double dev_channel = 0.0;
+	public static double dev_channel = 3.0;
 
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {

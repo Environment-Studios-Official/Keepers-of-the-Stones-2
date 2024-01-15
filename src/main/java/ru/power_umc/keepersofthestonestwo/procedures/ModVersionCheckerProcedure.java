@@ -115,11 +115,11 @@ public class ModVersionCheckerProcedure {
 					if (jmain.get("ver1").getAsDouble() > v1 || jmain.get("ver2").getAsDouble() > v2 && jmain.get("ver1").getAsDouble() >= v1
 							|| jmain.get("ver3").getAsDouble() > v3 && jmain.get("ver2").getAsDouble() >= v2 && jmain.get("ver1").getAsDouble() >= v1
 							|| jmain.get("ver4").getAsDouble() > v4 && jmain.get("ver3").getAsDouble() >= v3 && jmain.get("ver2").getAsDouble() >= v2 && jmain.get("ver1").getAsDouble() >= v1) {
-						if (entity instanceof Player _player && !_player.level().isClientSide())
+						if (entity instanceof Player _player && !_player.level.isClientSide())
 							_player.displayClientMessage(Component.literal((Component.translatable("power.modinfo.outdated_mod").getString() + "" + Math.round(jmain.get("ver1").getAsDouble()) + "." + Math.round(jmain.get("ver2").getAsDouble()) + "."
 									+ Math.round(jmain.get("ver3").getAsDouble()) + "." + Math.round(jmain.get("ver4").getAsDouble()) + ")")), false);
 					} else {
-						if (entity instanceof Player _player && !_player.level().isClientSide())
+						if (entity instanceof Player _player && !_player.level.isClientSide())
 							_player.displayClientMessage(Component.literal(("" + Component.translatable("power.modinfo.actual_version").getString())), false);
 					}
 				} catch (IOException e) {
@@ -181,11 +181,11 @@ public class ModVersionCheckerProcedure {
 					jmain = new Gson().fromJson(jsonstringbuilder.toString(), com.google.gson.JsonObject.class);
 					if (jmain.get("ver1").getAsDouble() > v1 || jmain.get("ver2").getAsDouble() > v2 && jmain.get("ver1").getAsDouble() >= v1
 							|| jmain.get("ver3").getAsDouble() > v3 && jmain.get("ver2").getAsDouble() >= v2 && jmain.get("ver1").getAsDouble() >= v1) {
-						if (entity instanceof Player _player && !_player.level().isClientSide())
+						if (entity instanceof Player _player && !_player.level.isClientSide())
 							_player.displayClientMessage(Component.literal((Component.translatable("power.modinfo.outdated_mod").getString() + "" + Math.round(jmain.get("ver1").getAsDouble()) + "." + Math.round(jmain.get("ver2").getAsDouble()) + "."
 									+ Math.round(jmain.get("ver3").getAsDouble()) + ")")), false);
 					} else {
-						if (entity instanceof Player _player && !_player.level().isClientSide())
+						if (entity instanceof Player _player && !_player.level.isClientSide())
 							_player.displayClientMessage(Component.literal(("" + Component.translatable("power.modinfo.actual_version").getString())), false);
 					}
 				} catch (IOException e) {
@@ -193,7 +193,7 @@ public class ModVersionCheckerProcedure {
 				}
 			}
 		} else if (PowerModVariables.dev_channel == 2) {
-			if (entity instanceof Player _player && !_player.level().isClientSide())
+			if (entity instanceof Player _player && !_player.level.isClientSide())
 				_player.displayClientMessage(Component.literal(("" + Component.translatable("power.modinfo.unofficial_version").getString())), false);
 		}
 	}

@@ -60,17 +60,13 @@ public class PowerMod {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		PowerModSounds.REGISTRY.register(bus);
 		PowerModBlocks.REGISTRY.register(bus);
-		PowerModBlockEntities.REGISTRY.register(bus);
 		PowerModItems.REGISTRY.register(bus);
 		PowerModEntities.REGISTRY.register(bus);
-<<<<<<< HEAD
-=======
-		PowerModEnchantments.REGISTRY.register(bus);
-		PowerModTabs.REGISTRY.register(bus);
->>>>>>> beta
+		PowerModBlockEntities.REGISTRY.register(bus);
 
 		PowerModMobEffects.REGISTRY.register(bus);
 
+		PowerModEnchantments.REGISTRY.register(bus);
 		PowerModParticleTypes.REGISTRY.register(bus);
 		PowerModMenus.REGISTRY.register(bus);
 

@@ -13,10 +13,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 public class BatteryChargerGUIScreen extends AbstractContainerScreen<BatteryChargerGUIMenu> {
@@ -37,34 +38,40 @@ public class BatteryChargerGUIScreen extends AbstractContainerScreen<BatteryChar
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_gui.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_gui.png"));
+		this.blit(ms, this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
 
 		if (BatteryChargerProgress1Procedure.execute(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_progress_1.png"), this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
+			RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_progress_1.png"));
+			this.blit(ms, this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
 		}
 		if (BatteryChargerProgress2Procedure.execute(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_progress_2.png"), this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
+			RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_progress_2.png"));
+			this.blit(ms, this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
 		}
 		if (BatteryChargerProgress3Procedure.execute(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_progress_3.png"), this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
+			RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_progress_3.png"));
+			this.blit(ms, this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
 		}
 		if (BatteryChargerProgress4Procedure.execute(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_progress_4.png"), this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
+			RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_progress_4.png"));
+			this.blit(ms, this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
 		}
 		if (BatteryChargerProgress5Procedure.execute(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("power:textures/screens/battery_charger_progress_5.png"), this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
+			RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/battery_charger_progress_5.png"));
+			this.blit(ms, this.leftPos + 37, this.topPos + 14, 0, 0, 102, 10, 102, 10);
 		}
 		RenderSystem.disableBlend();
 	}
@@ -84,16 +91,18 @@ public class BatteryChargerGUIScreen extends AbstractContainerScreen<BatteryChar
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
 	public void onClose() {
 		super.onClose();
+		Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
 	}
 
 	@Override
 	public void init() {
 		super.init();
+		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
 	}
 }

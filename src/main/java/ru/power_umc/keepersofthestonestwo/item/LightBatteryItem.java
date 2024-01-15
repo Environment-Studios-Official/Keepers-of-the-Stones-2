@@ -3,6 +3,7 @@ package ru.power_umc.keepersofthestonestwo.item;
 
 import ru.power_umc.keepersofthestonestwo.procedures.LightBatteryUseProcedure;
 import ru.power_umc.keepersofthestonestwo.procedures.LightBatteryDescProcedure;
+import ru.power_umc.keepersofthestonestwo.init.PowerModTabs;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class LightBatteryItem extends Item {
 	public LightBatteryItem() {
-		super(new Item.Properties().tab(null).stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class BatteryChargerProgress2Procedure {
 					return blockEntity.getPersistentData().getDouble(tag);
 				return -1;
 			}
-		}.getValue(world, BlockPos.containing(x, y, z), "craftingTime")) / 10;
+		}.getValue(world, new BlockPos(x, y, z), "craftingTime")) / 10;
 		if (new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -22,14 +22,14 @@ public class BatteryChargerProgress2Procedure {
 					return blockEntity.getPersistentData().getDouble(tag);
 				return -1;
 			}
-		}.getValue(world, BlockPos.containing(x, y, z), "craftingProgress") > craftingTime * 3 && new Object() {
+		}.getValue(world, new BlockPos(x, y, z), "craftingProgress") > craftingTime * 3 && new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity != null)
 					return blockEntity.getPersistentData().getDouble(tag);
 				return -1;
 			}
-		}.getValue(world, BlockPos.containing(x, y, z), "craftingProgress") <= craftingTime * 5) {
+		}.getValue(world, new BlockPos(x, y, z), "craftingProgress") <= craftingTime * 5) {
 			return true;
 		}
 		return false;

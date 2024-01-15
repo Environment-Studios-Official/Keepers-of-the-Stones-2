@@ -3,6 +3,7 @@ package ru.power_umc.keepersofthestonestwo.item;
 
 import ru.power_umc.keepersofthestonestwo.procedures.EnergiumRevengeAttackProcedure;
 import ru.power_umc.keepersofthestonestwo.procedures.EnergiumItemsPowerLockedProcedure;
+import ru.power_umc.keepersofthestonestwo.init.PowerModTabs;
 import ru.power_umc.keepersofthestonestwo.init.PowerModItems;
 
 import net.minecraft.world.level.Level;
@@ -44,7 +45,7 @@ public class EnergiumShovelItem extends ShovelItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of(new ItemStack(PowerModItems.ENERGIUM_INGOT.get()));
 			}
-		}, 1, -3f, new Item.Properties());
+		}, 1, -3f, new Item.Properties().tab(PowerModTabs.TAB_ITEMS));
 	}
 
 	@Override
@@ -55,8 +56,8 @@ public class EnergiumShovelItem extends ShovelItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-		super.appendHoverText(itemstack, world, list, flag);
+	public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+		super.appendHoverText(itemstack, level, list, flag);
 	}
 
 	@Override

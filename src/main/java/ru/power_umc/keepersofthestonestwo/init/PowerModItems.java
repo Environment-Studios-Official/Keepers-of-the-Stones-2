@@ -134,6 +134,7 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.BlockItem;
 
 public class PowerModItems {
@@ -160,13 +161,13 @@ public class PowerModItems {
 	public static final RegistryObject<Item> STAR_POTION_100 = REGISTRY.register("star_potion_100", () -> new StarPotion100Item());
 	public static final RegistryObject<Item> STAR_POTION_200 = REGISTRY.register("star_potion_200", () -> new StarPotion200Item());
 	public static final RegistryObject<Item> STAR_POTION_500 = REGISTRY.register("star_potion_500", () -> new StarPotion500Item());
-	public static final RegistryObject<Item> DEPLETED_ENERGIUM_ORE = block(PowerModBlocks.DEPLETED_ENERGIUM_ORE);
-	public static final RegistryObject<Item> DEPLETED_ENERGIUM_BLOCK = block(PowerModBlocks.DEPLETED_ENERGIUM_BLOCK);
-	public static final RegistryObject<Item> ENERGIUM_BLOCK = block(PowerModBlocks.ENERGIUM_BLOCK);
+	public static final RegistryObject<Item> DEPLETED_ENERGIUM_ORE = block(PowerModBlocks.DEPLETED_ENERGIUM_ORE, PowerModTabs.TAB_ITEMS);
+	public static final RegistryObject<Item> DEPLETED_ENERGIUM_BLOCK = block(PowerModBlocks.DEPLETED_ENERGIUM_BLOCK, PowerModTabs.TAB_ITEMS);
+	public static final RegistryObject<Item> ENERGIUM_BLOCK = block(PowerModBlocks.ENERGIUM_BLOCK, PowerModTabs.TAB_ITEMS);
 	public static final RegistryObject<Item> RAW_DEPLETED_ENERGIUM = REGISTRY.register("raw_depleted_energium", () -> new RawDepletedEnergiumItem());
 	public static final RegistryObject<Item> DEPLETED_ENERGIUM_INGOT = REGISTRY.register("depleted_energium_ingot", () -> new DepletedEnergiumIngotItem());
 	public static final RegistryObject<Item> ENERGIUM_INGOT = REGISTRY.register("energium_ingot", () -> new EnergiumIngotItem());
-	public static final RegistryObject<Item> BATTERY_CHARGER = block(PowerModBlocks.BATTERY_CHARGER);
+	public static final RegistryObject<Item> BATTERY_CHARGER = block(PowerModBlocks.BATTERY_CHARGER, PowerModTabs.TAB_ITEMS);
 	public static final RegistryObject<Item> ENERGIUM_UPGRADE_SMITHING_TEMPLATE = REGISTRY.register("energium_upgrade_smithing_template", () -> new EnergiumUpgradeSmithingTemplateItem());
 	public static final RegistryObject<Item> ENERGIUM_PICKAXE = REGISTRY.register("energium_pickaxe", () -> new EnergiumPickaxeItem());
 	public static final RegistryObject<Item> ENERGIUM_AXE = REGISTRY.register("energium_axe", () -> new EnergiumAxeItem());
@@ -325,7 +326,7 @@ public class PowerModItems {
 	public static final RegistryObject<Item> VACUUM_ARMOR_BOOTS = REGISTRY.register("vacuum_armor_boots", () -> new VacuumArmorItem.Boots());
 	public static final RegistryObject<Item> VACUUM_DAGGER = REGISTRY.register("vacuum_dagger", () -> new VacuumDaggerItem());
 
-	private static RegistryObject<Item> block(RegistryObject<Block> block) {
-		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
+	private static RegistryObject<Item> block(RegistryObject<Block> block, CreativeModeTab tab) {
+		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
 	}
 }

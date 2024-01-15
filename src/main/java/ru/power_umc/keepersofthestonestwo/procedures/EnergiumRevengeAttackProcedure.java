@@ -14,8 +14,8 @@ public class EnergiumRevengeAttackProcedure {
 		if (entity == null)
 			return;
 		if (EnchantmentHelper.getItemEnchantmentLevel(PowerModEnchantments.REVENGE.get(), itemstack) != 0) {
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-				_entity.addEffect(new MobEffectInstance(PowerModMobEffects.POWER_LOCK.get(), (int) (100 * itemstack.getEnchantmentLevel(PowerModEnchantments.REVENGE.get())), 0));
+			if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
+				_entity.addEffect(new MobEffectInstance(PowerModMobEffects.POWER_LOCK.get(), (int) (100 * EnchantmentHelper.getItemEnchantmentLevel(PowerModEnchantments.REVENGE.get(), itemstack)), 0));
 		}
 	}
 }
