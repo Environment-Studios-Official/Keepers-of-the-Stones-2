@@ -1,8 +1,6 @@
 
 package ru.power_umc.keepersofthestonestwo.item;
 
-import ru.power_umc.keepersofthestonestwo.init.PowerModTabs;
-
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Rarity;
@@ -14,7 +12,7 @@ import java.util.List;
 
 public class EnergiumUpgradeSmithingTemplateItem extends Item {
 	public EnergiumUpgradeSmithingTemplateItem() {
-		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(64).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(null).stacksTo(64).rarity(Rarity.COMMON));
 	}
 
 	@Override
