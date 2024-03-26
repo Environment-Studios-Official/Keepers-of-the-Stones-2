@@ -2,7 +2,7 @@
   "mappings": {
     "default": {
       "map": {
-        "0": "basic_box"
+        "4": "keepers_box"
       },
       "name": "default"
     }
