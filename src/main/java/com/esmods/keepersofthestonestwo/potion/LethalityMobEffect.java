@@ -1,4 +1,3 @@
-
 package com.esmods.keepersofthestonestwo.potion;
 
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -16,7 +15,7 @@ public class LethalityMobEffect extends MobEffect {
 	@Override
 	public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
 		super.removeAttributeModifiers(entity, attributeMap, amplifier);
-		LethalityPriIstiechieniiEffiektaProcedure.execute(entity.level(), entity);
+		LethalityPriIstiechieniiEffiektaProcedure.execute(entity.level, entity);
 	}
 
 	@Override

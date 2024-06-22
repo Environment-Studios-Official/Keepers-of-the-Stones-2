@@ -7,6 +7,6 @@ import net.minecraft.core.BlockPos;
 
 public class CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
-		world.levelEvent(2001, BlockPos.containing(x, y, z), Block.getId(Blocks.COBBLED_DEEPSLATE.defaultBlockState()));
+		world.levelEvent(2001, new BlockPos(x, y, z), Block.getId(Blocks.COBBLED_DEEPSLATE.defaultBlockState()));
 	}
 }

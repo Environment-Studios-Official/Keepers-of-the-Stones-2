@@ -1,20 +1,22 @@
 
 package com.esmods.keepersofthestonestwo.entity;
 
-import software.bernie.geckolib.util.GeckoLibUtil;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.IAnimatable;
 
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.projectile.ThrownPotion;
@@ -36,7 +38,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,21 +46,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.BlockPos;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumGolemPriObnovlieniiTikaSushchnostiProcedure;
 import com.esmods.keepersofthestonestwo.procedures.EnergiumGolemPriGibieliSushchnostiProcedure;
-import com.esmods.keepersofthestonestwo.init.PowerModItems;
 import com.esmods.keepersofthestonestwo.init.PowerModEntities;
 
-public class EnergiumGolemEntity extends Monster implements GeoEntity {
+public class EnergiumGolemEntity extends Monster implements IAnimatable {
 	public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(EnergiumGolemEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(EnergiumGolemEntity.class, EntityDataSerializers.STRING);
 	public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(EnergiumGolemEntity.class, EntityDataSerializers.STRING);
-	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 	private boolean swinging;
 	private boolean lastloop;
 	private long lastSwing;
@@ -74,7 +73,7 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 		super(type, world);
 		xpReward = 1000;
 		setNoAi(false);
-		setMaxUpStep(1f);
+		maxUpStep = 1f;
 		setPersistenceRequired();
 	}
 
@@ -95,7 +94,7 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -127,7 +126,7 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 
 	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-		this.spawnAtLocation(new ItemStack(PowerModItems.ENERGIUM_CORE.get()));
+		this.spawnAtLocation(new ItemStack(Blocks.AIR));
 	}
 
 	@Override
@@ -147,29 +146,27 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (source.is(DamageTypes.IN_FIRE))
-			return false;
 		if (source.getDirectEntity() instanceof AbstractArrow)
 			return false;
 		if (source.getDirectEntity() instanceof ThrownPotion || source.getDirectEntity() instanceof AreaEffectCloud)
 			return false;
-		if (source.is(DamageTypes.FALL))
+		if (source == DamageSource.FALL)
 			return false;
-		if (source.is(DamageTypes.CACTUS))
+		if (source == DamageSource.CACTUS)
 			return false;
-		if (source.is(DamageTypes.DROWN))
+		if (source == DamageSource.DROWN)
 			return false;
-		if (source.is(DamageTypes.LIGHTNING_BOLT))
+		if (source == DamageSource.LIGHTNING_BOLT)
 			return false;
-		if (source.is(DamageTypes.EXPLOSION))
+		if (source.isExplosion())
 			return false;
-		if (source.is(DamageTypes.FALLING_ANVIL))
+		if (source == DamageSource.ANVIL)
 			return false;
-		if (source.is(DamageTypes.DRAGON_BREATH))
+		if (source == DamageSource.DRAGON_BREATH)
 			return false;
-		if (source.is(DamageTypes.WITHER))
+		if (source == DamageSource.WITHER)
 			return false;
-		if (source.is(DamageTypes.WITHER_SKULL))
+		if (source.getMsgId().equals("witherSkull"))
 			return false;
 		return super.hurt(source, amount);
 	}
@@ -177,7 +174,7 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 	@Override
 	public void die(DamageSource source) {
 		super.die(source);
-		EnergiumGolemPriGibieliSushchnostiProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		EnergiumGolemPriGibieliSushchnostiProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 	}
 
 	@Override
@@ -196,7 +193,7 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		EnergiumGolemPriObnovlieniiTikaSushchnostiProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+		EnergiumGolemPriObnovlieniiTikaSushchnostiProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
 		this.refreshDimensions();
 	}
 
@@ -243,30 +240,31 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 		return builder;
 	}
 
-	private PlayState movementPredicate(AnimationState event) {
+	private <E extends IAnimatable> PlayState movementPredicate(AnimationEvent<E> event) {
 		if (this.animationprocedure.equals("empty")) {
 			if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
 
 			) {
-				return event.setAndContinue(RawAnimation.begin().thenLoop("energium_golem.animation.walk"));
+				event.getController().setAnimation(new AnimationBuilder().addAnimation("energium_golem.animation.walk", EDefaultLoopTypes.LOOP));
+				return PlayState.CONTINUE;
 			}
 			if (this.isDeadOrDying()) {
-				return event.setAndContinue(RawAnimation.begin().thenPlay("energium_golem.animation.death"));
+				event.getController().setAnimation(new AnimationBuilder().addAnimation("energium_golem.animation.death", EDefaultLoopTypes.PLAY_ONCE));
+				return PlayState.CONTINUE;
 			}
-			return event.setAndContinue(RawAnimation.begin().thenLoop("energium_golem.animation.idle"));
+			event.getController().setAnimation(new AnimationBuilder().addAnimation("energium_golem.animation.idle", EDefaultLoopTypes.LOOP));
+			return PlayState.CONTINUE;
 		}
 		return PlayState.STOP;
 	}
 
-	private PlayState procedurePredicate(AnimationState event) {
-		if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-			event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-			if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+	private <E extends IAnimatable> PlayState procedurePredicate(AnimationEvent<E> event) {
+		if (!this.animationprocedure.equals("empty") && event.getController().getAnimationState().equals(software.bernie.geckolib3.core.AnimationState.Stopped)) {
+			event.getController().setAnimation(new AnimationBuilder().addAnimation(this.animationprocedure, EDefaultLoopTypes.PLAY_ONCE));
+			if (event.getController().getAnimationState().equals(software.bernie.geckolib3.core.AnimationState.Stopped)) {
 				this.animationprocedure = "empty";
-				event.getController().forceAnimationReset();
+				event.getController().markNeedsReload();
 			}
-		} else if (animationprocedure.equals("empty")) {
-			return PlayState.STOP;
 		}
 		return PlayState.CONTINUE;
 	}
@@ -289,13 +287,13 @@ public class EnergiumGolemEntity extends Monster implements GeoEntity {
 	}
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-		data.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
-		data.add(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
+	public void registerControllers(AnimationData data) {
+		data.addAnimationController(new AnimationController<>(this, "movement", 4, this::movementPredicate));
+		data.addAnimationController(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return this.cache;
+	public AnimationFactory getFactory() {
+		return this.factory;
 	}
 }

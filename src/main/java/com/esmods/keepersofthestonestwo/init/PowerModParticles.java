@@ -1,4 +1,3 @@
-
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
@@ -36,27 +35,27 @@ import com.esmods.keepersofthestonestwo.client.particle.AmberPowerParticle;
 public class PowerModParticles {
 	@SubscribeEvent
 	public static void registerParticles(RegisterParticleProvidersEvent event) {
-		event.registerSpriteSet(PowerModParticleTypes.BASS_BOOM.get(), BassBoomParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.INSECTS.get(), InsectsParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.LIGHT_SPARKLE.get(), LightSparkleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.VACUUM_PARTICLE.get(), VacuumParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.ENERGY_SPARK.get(), EnergySparkParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.SUN_PARTICLES.get(), SunParticlesParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.MOON_PARTICLE.get(), MoonParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.STAR_PARTICLE.get(), StarParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.TIME_SLOW.get(), TimeSlowParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.TIME_STOP.get(), TimeStopParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.TIME_FAST.get(), TimeFastParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.RUNES_OF_CREATION.get(), RunesOfCreationParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.RUNES_OF_DESTRUCTION.get(), RunesOfDestructionParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.TECHNOBARRIER_PARTICLE.get(), TechnobarrierParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.TELEPORTATION_PARTICLE.get(), TeleportationParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.ENERGIUM_GOLEM_CORE_ATTACK_PARTICLE.get(), EnergiumGolemCoreAttackParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.AMBER_POWER.get(), AmberPowerParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.BLOOD_SPLASH.get(), BloodSplashParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.MIST_PARTICLE.get(), MistParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.POISON_PARTICLE.get(), PoisonParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.BLUE_MAGNET_PARTICLE.get(), BlueMagnetParticleParticle::provider);
-		event.registerSpriteSet(PowerModParticleTypes.RED_MAGNET_PARTICLE.get(), RedMagnetParticleParticle::provider);
+		event.register(PowerModParticleTypes.BASS_BOOM.get(), BassBoomParticle::provider);
+		event.register(PowerModParticleTypes.INSECTS.get(), InsectsParticle::provider);
+		event.register(PowerModParticleTypes.LIGHT_SPARKLE.get(), LightSparkleParticle::provider);
+		event.register(PowerModParticleTypes.VACUUM_PARTICLE.get(), VacuumParticleParticle::provider);
+		event.register(PowerModParticleTypes.ENERGY_SPARK.get(), EnergySparkParticle::provider);
+		event.register(PowerModParticleTypes.SUN_PARTICLES.get(), SunParticlesParticle::provider);
+		event.register(PowerModParticleTypes.MOON_PARTICLE.get(), MoonParticleParticle::provider);
+		event.register(PowerModParticleTypes.STAR_PARTICLE.get(), StarParticleParticle::provider);
+		event.register(PowerModParticleTypes.TIME_SLOW.get(), TimeSlowParticle::provider);
+		event.register(PowerModParticleTypes.TIME_STOP.get(), TimeStopParticle::provider);
+		event.register(PowerModParticleTypes.TIME_FAST.get(), TimeFastParticle::provider);
+		event.register(PowerModParticleTypes.RUNES_OF_CREATION.get(), RunesOfCreationParticle::provider);
+		event.register(PowerModParticleTypes.RUNES_OF_DESTRUCTION.get(), RunesOfDestructionParticle::provider);
+		event.register(PowerModParticleTypes.TECHNOBARRIER_PARTICLE.get(), TechnobarrierParticleParticle::provider);
+		event.register(PowerModParticleTypes.TELEPORTATION_PARTICLE.get(), TeleportationParticleParticle::provider);
+		event.register(PowerModParticleTypes.ENERGIUM_GOLEM_CORE_ATTACK_PARTICLE.get(), EnergiumGolemCoreAttackParticleParticle::provider);
+		event.register(PowerModParticleTypes.AMBER_POWER.get(), AmberPowerParticle::provider);
+		event.register(PowerModParticleTypes.BLOOD_SPLASH.get(), BloodSplashParticle::provider);
+		event.register(PowerModParticleTypes.MIST_PARTICLE.get(), MistParticleParticle::provider);
+		event.register(PowerModParticleTypes.POISON_PARTICLE.get(), PoisonParticleParticle::provider);
+		event.register(PowerModParticleTypes.BLUE_MAGNET_PARTICLE.get(), BlueMagnetParticleParticle::provider);
+		event.register(PowerModParticleTypes.RED_MAGNET_PARTICLE.get(), RedMagnetParticleParticle::provider);
 	}
 }

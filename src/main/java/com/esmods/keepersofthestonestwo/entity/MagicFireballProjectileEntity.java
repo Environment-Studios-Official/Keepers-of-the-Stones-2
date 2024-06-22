@@ -16,7 +16,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.init.PowerModItems;
@@ -43,7 +42,7 @@ public class MagicFireballProjectileEntity extends AbstractArrow implements Item
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -89,7 +88,7 @@ public class MagicFireballProjectileEntity extends AbstractArrow implements Item
 	}
 
 	public static MagicFireballProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		MagicFireballProjectileEntity entityarrow = new MagicFireballProjectileEntity(PowerModEntities.MAGIC_FIREBALL_PROJECTILE.get(), entity, entity.level());
+		MagicFireballProjectileEntity entityarrow = new MagicFireballProjectileEntity(PowerModEntities.MAGIC_FIREBALL_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -99,8 +98,8 @@ public class MagicFireballProjectileEntity extends AbstractArrow implements Item
 		entityarrow.setKnockback(3);
 		entityarrow.setCritArrow(false);
 		entityarrow.setSecondsOnFire(100);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.firecharge.use")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.firecharge.use")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

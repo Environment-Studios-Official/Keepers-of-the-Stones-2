@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.particles.SimpleParticleType;
 
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Comparator;
 
@@ -25,14 +26,14 @@ public class ActiveModeBarrierProcedure {
 		double b = 0;
 		{
 			final Vec3 _center = new Vec3(x, (y + 1), z);
-			List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(1.5 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+			List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(1.5 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).collect(Collectors.toList());
 			for (Entity entityiterator : _entfound) {
 				if (entity instanceof Arrow) {
 					entity.getPersistentData().putBoolean("barrier", true);
 				}
 			}
 		}
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+		if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 			_entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, 100, false, false));
 		r = 1.5;
 		a = 0;
@@ -48,7 +49,8 @@ public class ActiveModeBarrierProcedure {
 			a = a + 12;
 			{
 				final Vec3 _center = new Vec3(x, (y + 1), z);
-				List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+				List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center)))
+						.collect(Collectors.toList());
 				for (Entity entityiterator : _entfound) {
 					if (entity.getPersistentData().getBoolean("barrier") != true) {
 						if (!(entityiterator == entity)) {

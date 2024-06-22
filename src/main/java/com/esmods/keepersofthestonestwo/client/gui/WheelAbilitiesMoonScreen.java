@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.esmods.keepersofthestonestwo.world.inventory.WheelAbilitiesMoonMenu;
@@ -50,25 +50,26 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 		if (mouseX > leftPos + 82 && mouseX < leftPos + 106 && mouseY > topPos + 23 && mouseY < topPos + 47)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_light_uses_15"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_light_uses_15"), mouseX, mouseY);
 		if (mouseX > leftPos + 144 && mouseX < leftPos + 168 && mouseY > topPos + 85 && mouseY < topPos + 109)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_dripstone_uses_40"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_dripstone_uses_40"), mouseX, mouseY);
 		if (mouseX > leftPos + 83 && mouseX < leftPos + 107 && mouseY > topPos + 143 && mouseY < topPos + 167)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_withering_uses_80"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.wheel_abilities_moon.tooltip_moon_withering_uses_80"), mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/wheel_of_abilities.png"), this.leftPos + -1, this.topPos + 0, 0, 0, 192, 192, 192, 192);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/wheel_of_abilities.png"));
+		this.blit(ms, this.leftPos + -1, this.topPos + 0, 0, 0, 192, 192, 192, 192);
 
 		RenderSystem.disableBlend();
 	}
@@ -88,7 +89,7 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
@@ -101,9 +102,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelTwoOrFirstFakeProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_1", imagebutton_wheel_button_1);
@@ -115,9 +116,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelTwoProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_2", imagebutton_wheel_button_2);
@@ -129,9 +130,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetWheelThreeProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_wheel_button_3", imagebutton_wheel_button_3);
@@ -143,9 +144,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetFakeWheelOneProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_fake_wheel_button_1", imagebutton_fake_wheel_button_1);
@@ -157,9 +158,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetFakeWheelTwoProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_fake_wheel_button_2", imagebutton_fake_wheel_button_2);
@@ -171,9 +172,9 @@ public class WheelAbilitiesMoonScreen extends AbstractContainerScreen<WheelAbili
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (GetFakeWheelThirdProcedure.execute(entity))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_fake_wheel_button_3", imagebutton_fake_wheel_button_3);

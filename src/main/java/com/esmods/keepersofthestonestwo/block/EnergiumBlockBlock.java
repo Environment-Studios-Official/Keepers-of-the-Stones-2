@@ -1,6 +1,7 @@
 
 package com.esmods.keepersofthestonestwo.block;
 
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
@@ -17,7 +18,7 @@ import com.esmods.keepersofthestonestwo.procedures.EnergiumBlockPowerLockProcedu
 
 public class EnergiumBlockBlock extends Block {
 	public EnergiumBlockBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(6.75f, 5f).requiresCorrectToolForDrops());
+		super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(6.75f, 5f).requiresCorrectToolForDrops());
 	}
 
 	@Override

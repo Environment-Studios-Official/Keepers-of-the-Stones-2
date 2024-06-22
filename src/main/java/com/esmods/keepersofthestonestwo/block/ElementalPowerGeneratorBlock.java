@@ -6,6 +6,7 @@ import org.checkerframework.checker.units.qual.s;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,7 +38,7 @@ public class ElementalPowerGeneratorBlock extends Block implements EntityBlock {
 	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 1);
 
 	public ElementalPowerGeneratorBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(5f).lightLevel(s -> (new Object() {
+		super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f).lightLevel(s -> (new Object() {
 			public int getLightLevel() {
 				if (s.getValue(BLOCKSTATE) == 1)
 					return 7;

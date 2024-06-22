@@ -40,7 +40,7 @@ public class AnimalsHalberdItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of();
 			}
-		}, 3, -2.96f, new Item.Properties().fireResistant());
+		}, 3, -2.96f, new Item.Properties().tab(null).fireResistant());
 	}
 
 	@Override

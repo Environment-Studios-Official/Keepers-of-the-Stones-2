@@ -18,10 +18,11 @@ import java.util.List;
 import com.esmods.keepersofthestonestwo.procedures.TimeStoneUseProcedure;
 import com.esmods.keepersofthestonestwo.procedures.RechargeStoneTickEventProcedure;
 import com.esmods.keepersofthestonestwo.procedures.GetRechargeInfoProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class TimeStoneItem extends Item {
 	public TimeStoneItem() {
-		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_STONES).stacksTo(1).fireResistant().rarity(Rarity.COMMON));
 	}
 
 	@Override

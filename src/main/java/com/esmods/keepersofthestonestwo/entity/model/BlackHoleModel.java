@@ -1,12 +1,12 @@
 package com.esmods.keepersofthestonestwo.entity.model;
 
-import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 import net.minecraft.resources.ResourceLocation;
 
 import com.esmods.keepersofthestonestwo.entity.BlackHoleEntity;
 
-public class BlackHoleModel extends GeoModel<BlackHoleEntity> {
+public class BlackHoleModel extends AnimatedGeoModel<BlackHoleEntity> {
 	@Override
 	public ResourceLocation getAnimationResource(BlackHoleEntity entity) {
 		return new ResourceLocation("power", "animations/black_hole.animation.json");

@@ -1,4 +1,3 @@
-
 package com.esmods.keepersofthestonestwo.world.inventory;
 
 import net.minecraftforge.items.SlotItemHandler;
@@ -44,7 +43,7 @@ public class BatteryChargerGUIMenu extends AbstractContainerMenu implements Supp
 	public BatteryChargerGUIMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		super(PowerModMenus.BATTERY_CHARGER_GUI.get(), id);
 		this.entity = inv.player;
-		this.world = inv.player.level();
+		this.world = inv.player.level;
 		this.internal = new ItemStackHandler(3);
 		BlockPos pos = null;
 		if (extraData != null) {
@@ -214,9 +213,9 @@ public class BatteryChargerGUIMenu extends AbstractContainerMenu implements Supp
 				ItemStack itemstack1 = slot1.getItem();
 				if (itemstack1.isEmpty() && slot1.mayPlace(p_38904_)) {
 					if (p_38904_.getCount() > slot1.getMaxStackSize()) {
-						slot1.setByPlayer(p_38904_.split(slot1.getMaxStackSize()));
+						slot1.set(p_38904_.split(slot1.getMaxStackSize()));
 					} else {
-						slot1.setByPlayer(p_38904_.split(p_38904_.getCount()));
+						slot1.set(p_38904_.split(p_38904_.getCount()));
 					}
 					slot1.setChanged();
 					flag = true;

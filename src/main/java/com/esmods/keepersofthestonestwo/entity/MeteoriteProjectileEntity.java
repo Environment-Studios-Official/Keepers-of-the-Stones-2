@@ -18,7 +18,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.MeteoriteProjectileKoghdaSnariadPopadaietVBlokProcedure;
@@ -46,7 +45,7 @@ public class MeteoriteProjectileEntity extends AbstractArrow implements ItemSupp
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -70,13 +69,13 @@ public class MeteoriteProjectileEntity extends AbstractArrow implements ItemSupp
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		MeteoriteProjectileKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		MeteoriteProjectileKoghdaSnariadPopadaietVBlokProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		MeteoriteProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		MeteoriteProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -99,7 +98,7 @@ public class MeteoriteProjectileEntity extends AbstractArrow implements ItemSupp
 	}
 
 	public static MeteoriteProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		MeteoriteProjectileEntity entityarrow = new MeteoriteProjectileEntity(PowerModEntities.METEORITE_PROJECTILE.get(), entity, entity.level());
+		MeteoriteProjectileEntity entityarrow = new MeteoriteProjectileEntity(PowerModEntities.METEORITE_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -109,8 +108,8 @@ public class MeteoriteProjectileEntity extends AbstractArrow implements ItemSupp
 		entityarrow.setKnockback(4);
 		entityarrow.setCritArrow(false);
 		entityarrow.setSecondsOnFire(100);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.deepslate.break")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.deepslate.break")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

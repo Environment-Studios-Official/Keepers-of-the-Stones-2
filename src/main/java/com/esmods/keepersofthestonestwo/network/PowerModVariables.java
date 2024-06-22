@@ -52,8 +52,8 @@ public class PowerModVariables {
 	public static class EventBusVariableHandlers {
 		@SubscribeEvent
 		public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+			if (!event.getEntity().level.isClientSide()) {
+				for (Entity entityiterator : new ArrayList<>(event.getEntity().level.players())) {
 					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
 				}
 			}
@@ -61,8 +61,8 @@ public class PowerModVariables {
 
 		@SubscribeEvent
 		public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+			if (!event.getEntity().level.isClientSide()) {
+				for (Entity entityiterator : new ArrayList<>(event.getEntity().level.players())) {
 					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
 				}
 			}
@@ -70,8 +70,8 @@ public class PowerModVariables {
 
 		@SubscribeEvent
 		public static void onPlayerChangedDimensionSyncPlayerVariables(PlayerEvent.PlayerChangedDimensionEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+			if (!event.getEntity().level.isClientSide()) {
+				for (Entity entityiterator : new ArrayList<>(event.getEntity().level.players())) {
 					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
 				}
 			}
@@ -121,8 +121,8 @@ public class PowerModVariables {
 				clone.fake_element_name_second_timer = original.fake_element_name_second_timer;
 				clone.fake_element_name_third_timer = original.fake_element_name_third_timer;
 			}
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+			if (!event.getEntity().level.isClientSide()) {
+				for (Entity entityiterator : new ArrayList<>(event.getEntity().level.players())) {
 					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
 				}
 			}
@@ -130,9 +130,9 @@ public class PowerModVariables {
 
 		@SubscribeEvent
 		public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				SavedData mapdata = MapVariables.get(event.getEntity().level());
-				SavedData worlddata = WorldVariables.get(event.getEntity().level());
+			if (!event.getEntity().level.isClientSide()) {
+				SavedData mapdata = MapVariables.get(event.getEntity().level);
+				SavedData worlddata = WorldVariables.get(event.getEntity().level);
 				if (mapdata != null)
 					PowerMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(0, mapdata));
 				if (worlddata != null)
@@ -142,8 +142,8 @@ public class PowerModVariables {
 
 		@SubscribeEvent
 		public static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				SavedData worlddata = WorldVariables.get(event.getEntity().level());
+			if (!event.getEntity().level.isClientSide()) {
+				SavedData worlddata = WorldVariables.get(event.getEntity().level);
 				if (worlddata != null)
 					PowerMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(1, worlddata));
 			}
@@ -387,19 +387,16 @@ public class PowerModVariables {
 	}
 
 	public static class SavedDataSyncMessage {
-		private final int type;
-		private SavedData data;
+		public int type;
+		public SavedData data;
 
 		public SavedDataSyncMessage(FriendlyByteBuf buffer) {
 			this.type = buffer.readInt();
-			CompoundTag nbt = buffer.readNbt();
-			if (nbt != null) {
-				this.data = this.type == 0 ? new MapVariables() : new WorldVariables();
-				if (this.data instanceof MapVariables mapVariables)
-					mapVariables.read(nbt);
-				else if (this.data instanceof WorldVariables worldVariables)
-					worldVariables.read(nbt);
-			}
+			this.data = this.type == 0 ? new MapVariables() : new WorldVariables();
+			if (this.data instanceof MapVariables _mapvars)
+				_mapvars.read(buffer.readNbt());
+			else if (this.data instanceof WorldVariables _worldvars)
+				_worldvars.read(buffer.readNbt());
 		}
 
 		public SavedDataSyncMessage(int type, SavedData data) {
@@ -409,14 +406,13 @@ public class PowerModVariables {
 
 		public static void buffer(SavedDataSyncMessage message, FriendlyByteBuf buffer) {
 			buffer.writeInt(message.type);
-			if (message.data != null)
-				buffer.writeNbt(message.data.save(new CompoundTag()));
+			buffer.writeNbt(message.data.save(new CompoundTag()));
 		}
 
 		public static void handler(SavedDataSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 			NetworkEvent.Context context = contextSupplier.get();
 			context.enqueueWork(() -> {
-				if (!context.getDirection().getReceptionSide().isServer() && message.data != null) {
+				if (!context.getDirection().getReceptionSide().isServer()) {
 					if (message.type == 0)
 						MapVariables.clientSide = (MapVariables) message.data;
 					else
@@ -498,7 +494,7 @@ public class PowerModVariables {
 
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
-				PowerMod.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(entity.level()::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
+				PowerMod.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(entity.level::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
 		}
 
 		public Tag writeNBT() {
@@ -614,7 +610,7 @@ public class PowerModVariables {
 			NetworkEvent.Context context = contextSupplier.get();
 			context.enqueueWork(() -> {
 				if (!context.getDirection().getReceptionSide().isServer()) {
-					PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.level().getEntity(message.target).getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
+					PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.level.getEntity(message.target).getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
 					variables.active = message.data.active;
 					variables.selected = message.data.selected;
 					variables.power = message.data.power;

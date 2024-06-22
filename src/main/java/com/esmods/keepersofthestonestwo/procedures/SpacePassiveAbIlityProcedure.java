@@ -39,11 +39,11 @@ public class SpacePassiveAbIlityProcedure {
 				|| ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).fake_element_name_first).equals("space")
 				|| ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).fake_element_name_first).equals("space")) {
 			if (entity.isInLava() || entity.isOnFire()) {
-				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 					_entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400, 0, false, false));
 				entity.clearFire();
 			} else if (entity.isInWaterOrBubble()) {
-				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 					_entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0, false, false));
 			}
 		}

@@ -25,7 +25,7 @@ public class BecomeAMasterGetProcedure {
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END) {
-			execute(event, event.player.level(), event.player);
+			execute(event, event.player.level, event.player);
 		}
 	}
 
@@ -38,7 +38,7 @@ public class BecomeAMasterGetProcedure {
 			return;
 		{
 			AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
-			entity.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(_iitemhandlerref::set);
+			entity.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> _iitemhandlerref.set(capability));
 			if (_iitemhandlerref.get() != null) {
 				for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
 					ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();

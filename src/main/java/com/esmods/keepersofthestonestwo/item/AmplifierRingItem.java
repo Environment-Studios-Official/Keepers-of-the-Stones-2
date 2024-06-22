@@ -10,10 +10,11 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 
 import com.esmods.keepersofthestonestwo.procedures.AmplifierRingUseProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class AmplifierRingItem extends Item {
 	public AmplifierRingItem() {
-		super(new Item.Properties().durability(3).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).durability(3).rarity(Rarity.COMMON));
 	}
 
 	@Override

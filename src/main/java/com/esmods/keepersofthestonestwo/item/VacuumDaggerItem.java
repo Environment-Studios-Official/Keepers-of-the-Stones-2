@@ -40,7 +40,7 @@ public class VacuumDaggerItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of();
 			}
-		}, 3, -1.6f, new Item.Properties().fireResistant());
+		}, 3, -1.6f, new Item.Properties().tab(null).fireResistant());
 	}
 
 	@Override

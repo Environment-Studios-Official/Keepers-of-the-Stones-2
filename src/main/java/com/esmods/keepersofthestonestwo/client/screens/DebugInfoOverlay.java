@@ -43,58 +43,58 @@ public class DebugInfoOverlay {
 		double z = 0;
 		Player entity = Minecraft.getInstance().player;
 		if (entity != null) {
-			world = entity.level();
+			world = entity.level;
 			x = entity.getX();
 			y = entity.getY();
 			z = entity.getZ();
 		}
 		if (DebugCheckProcedure.execute(entity)) {
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					StarPointsRecoveryMultiplierDebugProcedure.execute(entity), 6, 98, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					StarPointsRecoveryMultiplierDebugProcedure.execute(entity), 6, 98, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					MaxStarPointsDebugProcedure.execute(entity), 6, 107, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					MaxStarPointsDebugProcedure.execute(entity), 6, 107, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					FakeElementsTimerDebugProcedure.execute(entity), 6, 170, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					FakeElementsTimerDebugProcedure.execute(entity), 6, 170, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					PowerRecordedDubugProcedure.execute(entity), 6, 179, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					PowerRecordedDubugProcedure.execute(entity), 6, 179, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					FakeElementsActiveDebugProcedure.execute(entity), 6, 161, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					FakeElementsActiveDebugProcedure.execute(entity), 6, 161, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					ElementsActiveDebugProcedure.execute(entity), 6, 152, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					ElementsActiveDebugProcedure.execute(entity), 6, 152, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					ActivePowerDebugProcedure.execute(entity), 6, 116, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					ActivePowerDebugProcedure.execute(entity), 6, 116, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					ActiveBatteryDebugProcedure.execute(entity), 6, 125, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					ActiveBatteryDebugProcedure.execute(entity), 6, 125, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					MergersNumberDebugProcedure.execute(entity), 6, 143, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					MergersNumberDebugProcedure.execute(entity), 6, 143, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					ModVersionDebugProcedure.execute(), 6, 62, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.power.debug_info.label_debug_mode"), 6, 53, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					ModVersionDebugProcedure.execute(), 6, 62, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(), Component.translatable("gui.power.debug_info.label_debug_mode"), 6, 53, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					StarPointsDebugProcedure.execute(entity), 6, 80, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					StarPointsDebugProcedure.execute(entity), 6, 80, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					SelectedAttackDebugProcedure.execute(entity), 6, 134, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					SelectedAttackDebugProcedure.execute(entity), 6, 134, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					CPAPIVersionDebugProcedure.execute(), 6, 71, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					CPAPIVersionDebugProcedure.execute(), 6, 71, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					StarPointsRegTimerDebugProcedure.execute(entity), 6, 89, -1, false);
-			event.getGuiGraphics().drawString(Minecraft.getInstance().font,
+					StarPointsRegTimerDebugProcedure.execute(entity), 6, 89, -1);
+			Minecraft.getInstance().font.draw(event.getPoseStack(),
 
-					AbilityBlockedDebugProcedure.execute(entity), 6, 188, -1, false);
+					AbilityBlockedDebugProcedure.execute(entity), 6, 188, -1);
 		}
 	}
 }

@@ -9,10 +9,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.Entity;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumItemsPowerLockedProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class EnergiumCoreItem extends Item {
 	public EnergiumCoreItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(1).rarity(Rarity.EPIC));
 	}
 
 	@Override

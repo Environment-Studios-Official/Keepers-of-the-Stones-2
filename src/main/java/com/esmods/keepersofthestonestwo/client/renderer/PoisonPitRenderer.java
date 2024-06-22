@@ -1,4 +1,3 @@
-
 package com.esmods.keepersofthestonestwo.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +12,7 @@ import com.esmods.keepersofthestonestwo.entity.PoisonPitEntity;
 public class PoisonPitRenderer extends HumanoidMobRenderer<PoisonPitEntity, HumanoidModel<PoisonPitEntity>> {
 	public PoisonPitRenderer(EntityRendererProvider.Context context) {
 		super(context, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER)), 0f);
-		this.addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)), new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)), context.getModelManager()));
+		this.addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)), new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
 	}
 
 	@Override

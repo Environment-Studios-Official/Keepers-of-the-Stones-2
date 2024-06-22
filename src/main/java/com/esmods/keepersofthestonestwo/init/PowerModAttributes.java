@@ -14,12 +14,7 @@ import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Entity;
-
-import java.util.List;
 
 import com.esmods.keepersofthestonestwo.PowerMod;
 
@@ -38,18 +33,9 @@ public class PowerModAttributes {
 
 	@SubscribeEvent
 	public static void addAttributes(EntityAttributeModificationEvent event) {
-		List<EntityType<? extends LivingEntity>> entityTypes = event.getTypes();
-		entityTypes.forEach((e) -> {
-			Class<? extends Entity> baseClass = e.getBaseClass();
-			if (baseClass.isAssignableFrom(Mob.class)) {
-				event.add(e, FROZENINICE.get());
-			}
-		});
-		entityTypes.forEach((e) -> {
-			Class<? extends Entity> baseClass = e.getBaseClass();
-			if (baseClass.isAssignableFrom(Mob.class)) {
-				event.add(e, SEALEDINAMBER.get());
-			}
-		});
+		event.add(EntityType.ZOMBIE, FROZENINICE.get());
+		event.add(EntityType.PLAYER, FROZENINICE.get());
+		event.add(EntityType.PLAYER, SEALEDINAMBER.get());
+		event.add(EntityType.ZOMBIE, SEALEDINAMBER.get());
 	}
 }

@@ -1,4 +1,3 @@
-
 package com.esmods.keepersofthestonestwo.world.inventory;
 
 import net.minecraftforge.items.ItemStackHandler;
@@ -38,7 +37,7 @@ public class WheelAbilitiesCrystalMenu extends AbstractContainerMenu implements 
 	public WheelAbilitiesCrystalMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		super(PowerModMenus.WHEEL_ABILITIES_CRYSTAL.get(), id);
 		this.entity = inv.player;
-		this.world = inv.player.level();
+		this.world = inv.player.level;
 		this.internal = new ItemStackHandler(0);
 		BlockPos pos = null;
 		if (extraData != null) {

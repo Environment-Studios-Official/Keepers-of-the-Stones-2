@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.esmods.keepersofthestonestwo.world.inventory.KeepersBoxGUIPart4Menu;
@@ -56,46 +56,47 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 		if (AnimalsStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 44 && mouseX < leftPos + 68 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_animals"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_animals"), mouseX, mouseY);
 		if (CreationStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 91 && mouseX < leftPos + 115 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_crystal"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_crystal"), mouseX, mouseY);
 		if (EtherStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 42 && mouseX < leftPos + 66 && mouseY > topPos + 103 && mouseY < topPos + 127)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_ether"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_ether"), mouseX, mouseY);
 		if (MetalStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 133 && mouseX < leftPos + 157 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_metal"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_metal"), mouseX, mouseY);
 		if (EarthStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 157 && mouseX < leftPos + 181 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_earth"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_earth"), mouseX, mouseY);
 		if (PlantsStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 182 && mouseX < leftPos + 206 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_plants"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_plants"), mouseX, mouseY);
 		if (AmberStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 91 && mouseX < leftPos + 115 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_amber"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_amber"), mouseX, mouseY);
 		if (SandStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 159 && mouseX < leftPos + 183 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_sand"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_sand"), mouseX, mouseY);
 		if (PoisonStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 68 && mouseX < leftPos + 92 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_poison"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_4.tooltip_poison"), mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/keepers_box_gui_part_4.png"), this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/keepers_box_gui_part_4.png"));
+		this.blit(ms, this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
 
 		RenderSystem.disableBlend();
 	}
@@ -115,7 +116,7 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
@@ -140,9 +141,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (AnimalsStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_animals_element", imagebutton_animals_element);
@@ -154,9 +155,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (CrystalStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_crystal_element", imagebutton_crystal_element);
@@ -168,9 +169,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (EtherStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_ether_element", imagebutton_ether_element);
@@ -182,9 +183,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (MetalStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_metal_element", imagebutton_metal_element);
@@ -196,9 +197,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (EarthStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_earth_element", imagebutton_earth_element);
@@ -210,9 +211,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (PlantsStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_plants_element", imagebutton_plants_element);
@@ -224,9 +225,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (AmberStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_amber_element", imagebutton_amber_element);
@@ -238,9 +239,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (SandStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_sand_element", imagebutton_sand_element);
@@ -252,9 +253,9 @@ public class KeepersBoxGUIPart4Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (PoisonStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_poison_element", imagebutton_poison_element);

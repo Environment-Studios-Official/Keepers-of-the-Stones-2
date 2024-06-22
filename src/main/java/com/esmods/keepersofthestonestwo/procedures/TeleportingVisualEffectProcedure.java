@@ -22,7 +22,7 @@ public class TeleportingVisualEffectProcedure {
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END) {
-			execute(event, event.player.level(), event.player.getX(), event.player.getY(), event.player.getZ(), event.player);
+			execute(event, event.player.level, event.player.getX(), event.player.getY(), event.player.getZ(), event.player);
 		}
 	}
 

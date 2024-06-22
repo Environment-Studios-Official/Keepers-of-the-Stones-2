@@ -17,7 +17,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.init.PowerModEntities;
@@ -43,7 +42,7 @@ public class TurretProjectileEntity extends AbstractArrow implements ItemSupplie
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -88,7 +87,7 @@ public class TurretProjectileEntity extends AbstractArrow implements ItemSupplie
 	}
 
 	public static TurretProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		TurretProjectileEntity entityarrow = new TurretProjectileEntity(PowerModEntities.TURRET_PROJECTILE.get(), entity, entity.level());
+		TurretProjectileEntity entityarrow = new TurretProjectileEntity(PowerModEntities.TURRET_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -97,8 +96,8 @@ public class TurretProjectileEntity extends AbstractArrow implements ItemSupplie
 		entityarrow.setBaseDamage(12);
 		entityarrow.setKnockback(2);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1,
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1,
 				1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}

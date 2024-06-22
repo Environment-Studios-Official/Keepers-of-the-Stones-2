@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "power:amplifier_drop",
+          "name": "minecraft:air",
           "weight": 3,
           "functions": [
             {
@@ -48,7 +48,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "power:depleted_energium_ingot",
+          "name": "minecraft:air",
           "weight": 3,
           "functions": [
             {
@@ -196,6 +196,5 @@
         }
       ]
     }
-  ],
-  "random_sequence": "power:chests/cursed_castle_vaults"
+  ]
 }

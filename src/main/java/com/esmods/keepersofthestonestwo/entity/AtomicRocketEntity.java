@@ -19,7 +19,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.AtomicRocketKazhdyiTikPriPoliotieSnariadaProcedure;
@@ -47,7 +46,7 @@ public class AtomicRocketEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -71,19 +70,19 @@ public class AtomicRocketEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		AtomicRocketExplosionProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		AtomicRocketExplosionProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		AtomicRocketExplosionProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		AtomicRocketExplosionProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		AtomicRocketKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		AtomicRocketKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -105,7 +104,7 @@ public class AtomicRocketEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	public static AtomicRocketEntity shoot(LivingEntity entity, LivingEntity target) {
-		AtomicRocketEntity entityarrow = new AtomicRocketEntity(PowerModEntities.ATOMIC_ROCKET.get(), entity, entity.level());
+		AtomicRocketEntity entityarrow = new AtomicRocketEntity(PowerModEntities.ATOMIC_ROCKET.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -114,8 +113,8 @@ public class AtomicRocketEntity extends AbstractArrow implements ItemSupplier {
 		entityarrow.setBaseDamage(42);
 		entityarrow.setKnockback(10);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1,
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1,
 				1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}

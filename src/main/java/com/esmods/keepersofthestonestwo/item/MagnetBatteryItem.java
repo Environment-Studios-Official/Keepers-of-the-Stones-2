@@ -17,10 +17,11 @@ import java.util.List;
 
 import com.esmods.keepersofthestonestwo.procedures.MagnetBatteryUseProcedure;
 import com.esmods.keepersofthestonestwo.procedures.MagnetBatteryDescProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class MagnetBatteryItem extends Item {
 	public MagnetBatteryItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

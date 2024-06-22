@@ -16,7 +16,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.init.PowerModItems;
@@ -43,7 +42,7 @@ public class PoisonDropProjectileEntity extends AbstractArrow implements ItemSup
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -88,7 +87,7 @@ public class PoisonDropProjectileEntity extends AbstractArrow implements ItemSup
 	}
 
 	public static PoisonDropProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		PoisonDropProjectileEntity entityarrow = new PoisonDropProjectileEntity(PowerModEntities.POISON_DROP_PROJECTILE.get(), entity, entity.level());
+		PoisonDropProjectileEntity entityarrow = new PoisonDropProjectileEntity(PowerModEntities.POISON_DROP_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -97,8 +96,8 @@ public class PoisonDropProjectileEntity extends AbstractArrow implements ItemSup
 		entityarrow.setBaseDamage(6);
 		entityarrow.setKnockback(1);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.bubble_column.bubble_pop")), SoundSource.PLAYERS, 1,
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.bubble_column.bubble_pop")), SoundSource.PLAYERS, 1,
 				1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}

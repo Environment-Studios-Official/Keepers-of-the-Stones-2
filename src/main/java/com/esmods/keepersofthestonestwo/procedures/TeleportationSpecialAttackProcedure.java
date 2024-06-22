@@ -40,14 +40,14 @@ public class TeleportationSpecialAttackProcedure {
 				}
 				{
 					Entity _ent = entity;
-					if (!_ent.level().isClientSide() && _ent.getServer() != null) {
-						_ent.getServer().getCommands().performPrefixedCommand(new CommandSourceStack(CommandSource.NULL, _ent.position(), _ent.getRotationVector(), _ent.level() instanceof ServerLevel ? (ServerLevel) _ent.level() : null, 4,
-								_ent.getName().getString(), _ent.getDisplayName(), _ent.level().getServer(), _ent), "spawnpoint @s ~ ~ ~");
+					if (!_ent.level.isClientSide() && _ent.getServer() != null) {
+						_ent.getServer().getCommands().performPrefixedCommand(new CommandSourceStack(CommandSource.NULL, _ent.position(), _ent.getRotationVector(), _ent.level instanceof ServerLevel ? (ServerLevel) _ent.level : null, 4,
+								_ent.getName().getString(), _ent.getDisplayName(), _ent.level.getServer(), _ent), "spawnpoint @s ~ ~ ~");
 					}
 				}
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
+						_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1, false);
 					}
@@ -72,31 +72,31 @@ public class TeleportationSpecialAttackProcedure {
 				{
 					Entity _ent = entity;
 					_ent.teleportTo(
-							((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-									? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getX() : _player.level().getLevelData().getXSpawn())
+							((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+									? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getX() : _player.level.getLevelData().getXSpawn())
 									: 0),
-							((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-									? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getY() : _player.level().getLevelData().getYSpawn())
+							((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+									? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getY() : _player.level.getLevelData().getYSpawn())
 									: 0),
-							((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-									? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getZ() : _player.level().getLevelData().getZSpawn())
+							((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+									? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getZ() : _player.level.getLevelData().getZSpawn())
 									: 0));
 					if (_ent instanceof ServerPlayer _serverPlayer)
 						_serverPlayer.connection.teleport(
-								((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-										? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getX() : _player.level().getLevelData().getXSpawn())
+								((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+										? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getX() : _player.level.getLevelData().getXSpawn())
 										: 0),
-								((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-										? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getY() : _player.level().getLevelData().getYSpawn())
+								((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+										? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getY() : _player.level.getLevelData().getYSpawn())
 										: 0),
-								((entity instanceof ServerPlayer _player && !_player.level().isClientSide())
-										? ((_player.getRespawnDimension().equals(_player.level().dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getZ() : _player.level().getLevelData().getZSpawn())
+								((entity instanceof ServerPlayer _player && !_player.level.isClientSide())
+										? ((_player.getRespawnDimension().equals(_player.level.dimension()) && _player.getRespawnPosition() != null) ? _player.getRespawnPosition().getZ() : _player.level.getLevelData().getZSpawn())
 										: 0),
 								_ent.getYRot(), _ent.getXRot());
 				}
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
+						_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1, false);
 					}
@@ -112,7 +112,7 @@ public class TeleportationSpecialAttackProcedure {
 		} else if (((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).attack).equals("teleportation_attack_3")) {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 20) {
 				if (!PowerModVariables.MapVariables.get(world).blue_portal_placed) {
-					world.setBlock(BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), PowerModBlocks.BLUE_PORTAL.get().defaultBlockState(), 3);
+					world.setBlock(new BlockPos(entity.getX(), entity.getY(), entity.getZ()), PowerModBlocks.BLUE_PORTAL.get().defaultBlockState(), 3);
 					PowerModVariables.MapVariables.get(world).blue_portal_placed = true;
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					PowerModVariables.MapVariables.get(world).bpX = entity.getX();
@@ -123,13 +123,13 @@ public class TeleportationSpecialAttackProcedure {
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1, false);
 						}
 					}
 				} else if (PowerModVariables.MapVariables.get(world).blue_portal_placed && !PowerModVariables.MapVariables.get(world).orange_portal_placed) {
-					world.setBlock(BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), PowerModBlocks.ORANGE_PORTAL.get().defaultBlockState(), 3);
+					world.setBlock(new BlockPos(entity.getX(), entity.getY(), entity.getZ()), PowerModBlocks.ORANGE_PORTAL.get().defaultBlockState(), 3);
 					PowerModVariables.MapVariables.get(world).orange_portal_placed = true;
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					PowerModVariables.MapVariables.get(world).opX = entity.getX();
@@ -140,21 +140,21 @@ public class TeleportationSpecialAttackProcedure {
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1, false);
 						}
 					}
 				} else if (PowerModVariables.MapVariables.get(world).blue_portal_placed && PowerModVariables.MapVariables.get(world).orange_portal_placed) {
-					world.setBlock(BlockPos.containing(PowerModVariables.MapVariables.get(world).bpX, PowerModVariables.MapVariables.get(world).bpY, PowerModVariables.MapVariables.get(world).bpZ), Blocks.AIR.defaultBlockState(), 3);
-					world.setBlock(BlockPos.containing(PowerModVariables.MapVariables.get(world).opX, PowerModVariables.MapVariables.get(world).opY, PowerModVariables.MapVariables.get(world).opZ), Blocks.AIR.defaultBlockState(), 3);
+					world.setBlock(new BlockPos(PowerModVariables.MapVariables.get(world).bpX, PowerModVariables.MapVariables.get(world).bpY, PowerModVariables.MapVariables.get(world).bpZ), Blocks.AIR.defaultBlockState(), 3);
+					world.setBlock(new BlockPos(PowerModVariables.MapVariables.get(world).opX, PowerModVariables.MapVariables.get(world).opY, PowerModVariables.MapVariables.get(world).opZ), Blocks.AIR.defaultBlockState(), 3);
 					PowerModVariables.MapVariables.get(world).blue_portal_placed = false;
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					PowerModVariables.MapVariables.get(world).orange_portal_placed = false;
 					PowerModVariables.MapVariables.get(world).syncData(world);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.chorus_fruit.teleport")), SoundSource.NEUTRAL, 1, 1, false);
 						}

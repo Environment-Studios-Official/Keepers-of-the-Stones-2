@@ -40,7 +40,7 @@ public class LightningFalchionItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of();
 			}
-		}, 3, -1.92f, new Item.Properties().fireResistant());
+		}, 3, -1.92f, new Item.Properties().tab(null).fireResistant());
 	}
 
 	@Override

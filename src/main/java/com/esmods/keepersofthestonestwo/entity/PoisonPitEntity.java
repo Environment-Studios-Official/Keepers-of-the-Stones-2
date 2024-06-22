@@ -1,6 +1,6 @@
-
 package com.esmods.keepersofthestonestwo.entity;
 
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.common.ForgeMod;
@@ -24,10 +24,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.Mth;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.PoisonPitTickProcedure;
@@ -41,7 +41,7 @@ public class PoisonPitEntity extends Monster {
 
 	public PoisonPitEntity(EntityType<PoisonPitEntity> type, Level world) {
 		super(type, world);
-		setMaxUpStep(0.6f);
+		maxUpStep = 0.6f;
 		xpReward = 0;
 		setNoAi(true);
 		setPersistenceRequired();
@@ -81,7 +81,7 @@ public class PoisonPitEntity extends Monster {
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -106,8 +106,18 @@ public class PoisonPitEntity extends Monster {
 	}
 
 	@Override
+	public SoundEvent getHurtSound(DamageSource ds) {
+		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+	}
+
+	@Override
+	public SoundEvent getDeathSound() {
+		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+	}
+
+	@Override
 	public boolean hurt(DamageSource damagesource, float amount) {
-		if (damagesource.is(DamageTypes.IN_FIRE))
+		if (damagesource == DamageSource.IN_FIRE)
 			return false;
 		if (damagesource.getDirectEntity() instanceof AbstractArrow)
 			return false;
@@ -115,23 +125,23 @@ public class PoisonPitEntity extends Monster {
 			return false;
 		if (damagesource.getDirectEntity() instanceof ThrownPotion || damagesource.getDirectEntity() instanceof AreaEffectCloud)
 			return false;
-		if (damagesource.is(DamageTypes.FALL))
+		if (damagesource == DamageSource.FALL)
 			return false;
-		if (damagesource.is(DamageTypes.CACTUS))
+		if (damagesource == DamageSource.CACTUS)
 			return false;
-		if (damagesource.is(DamageTypes.DROWN))
+		if (damagesource == DamageSource.DROWN)
 			return false;
-		if (damagesource.is(DamageTypes.LIGHTNING_BOLT))
+		if (damagesource == DamageSource.LIGHTNING_BOLT)
 			return false;
-		if (damagesource.is(DamageTypes.EXPLOSION) || damagesource.is(DamageTypes.PLAYER_EXPLOSION))
+		if (damagesource.isExplosion())
 			return false;
-		if (damagesource.is(DamageTypes.TRIDENT))
+		if (damagesource.getMsgId().equals("trident"))
 			return false;
-		if (damagesource.is(DamageTypes.FALLING_ANVIL))
+		if (damagesource == DamageSource.ANVIL)
 			return false;
-		if (damagesource.is(DamageTypes.DRAGON_BREATH))
+		if (damagesource == DamageSource.DRAGON_BREATH)
 			return false;
-		if (damagesource.is(DamageTypes.WITHER) || damagesource.is(DamageTypes.WITHER_SKULL))
+		if (damagesource == DamageSource.WITHER || damagesource.getMsgId().equals("witherSkull"))
 			return false;
 		return super.hurt(damagesource, amount);
 	}
@@ -149,7 +159,7 @@ public class PoisonPitEntity extends Monster {
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		PoisonPitTickProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+		PoisonPitTickProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
 		this.refreshDimensions();
 	}
 
@@ -163,7 +173,7 @@ public class PoisonPitEntity extends Monster {
 		double x = this.getX();
 		double y = this.getY();
 		double z = this.getZ();
-		Level world = this.level();
+		Level world = this.level;
 		Entity entity = this;
 		return true;
 	}
@@ -173,7 +183,7 @@ public class PoisonPitEntity extends Monster {
 		double x = this.getX();
 		double y = this.getY();
 		double z = this.getZ();
-		Level world = this.level();
+		Level world = this.level;
 		Entity entity = this;
 		return false;
 	}
@@ -194,7 +204,7 @@ public class PoisonPitEntity extends Monster {
 	@Override
 	public EntityDimensions getDimensions(Pose pose) {
 		Entity entity = this;
-		Level world = this.level();
+		Level world = this.level;
 		double x = this.getX();
 		double y = this.getY();
 		double z = this.getZ();

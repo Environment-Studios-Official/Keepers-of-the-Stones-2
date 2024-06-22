@@ -6,16 +6,16 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Comparator;
 
@@ -40,7 +40,7 @@ public class ExplosionSpecialAttackProcedure {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 20) {
 				{
 					Entity _shootFrom = entity;
-					Level projectileLevel = _shootFrom.level();
+					Level projectileLevel = _shootFrom.level;
 					if (!projectileLevel.isClientSide()) {
 						Projectile _entityToSpawn = new Object() {
 							public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
@@ -59,7 +59,7 @@ public class ExplosionSpecialAttackProcedure {
 				}
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1);
+						_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1, false);
 					}
@@ -76,12 +76,13 @@ public class ExplosionSpecialAttackProcedure {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 50) {
 				{
 					final Vec3 _center = new Vec3(x, y, z);
-					List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(2 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+					List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(2 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center)))
+							.collect(Collectors.toList());
 					for (Entity entityiterator : _entfound) {
 						if (!(entityiterator == entity)) {
-							entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("power:elemental_powers"))), entity), 0);
+							entityiterator.hurt(new EntityDamageSource("power:elemental_powers", entity), 0);
 							if (world instanceof Level _level && !_level.isClientSide())
-								_level.explode(null, x, y, z, 5, true, Level.ExplosionInteraction.MOB);
+								_level.explode(null, x, y, z, 5, true, Explosion.BlockInteraction.DESTROY);
 						}
 					}
 				}
@@ -97,7 +98,7 @@ public class ExplosionSpecialAttackProcedure {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 100) {
 				{
 					Entity _shootFrom = entity;
-					Level projectileLevel = _shootFrom.level();
+					Level projectileLevel = _shootFrom.level;
 					if (!projectileLevel.isClientSide()) {
 						Projectile _entityToSpawn = new Object() {
 							public Projectile getArrow(Level level, Entity shooter, float damage, int knockback, byte piercing) {
@@ -117,7 +118,7 @@ public class ExplosionSpecialAttackProcedure {
 				}
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1);
+						_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.fall")), SoundSource.PLAYERS, 1, 1, false);
 					}

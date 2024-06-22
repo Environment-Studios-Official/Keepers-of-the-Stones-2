@@ -17,10 +17,11 @@ import java.util.List;
 
 import com.esmods.keepersofthestonestwo.procedures.ShadowBatteryUseProcedure;
 import com.esmods.keepersofthestonestwo.procedures.ShadowBatteryDescProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class ShadowBatteryItem extends Item {
 	public ShadowBatteryItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

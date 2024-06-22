@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.esmods.keepersofthestonestwo.world.inventory.KeepersBoxGUIPart3Menu;
@@ -51,39 +51,40 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 		if (LightStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 91 && mouseX < leftPos + 115 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_light"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_light"), mouseX, mouseY);
 		if (ShadowStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 134 && mouseX < leftPos + 158 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_shadow"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_shadow"), mouseX, mouseY);
 		if (SunStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 158 && mouseX < leftPos + 182 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_sun"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_sun"), mouseX, mouseY);
 		if (SpaceStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 182 && mouseX < leftPos + 206 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_space"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_space"), mouseX, mouseY);
 		if (MoonStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 158 && mouseX < leftPos + 182 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_moon"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_moon"), mouseX, mouseY);
 		if (VacuumStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 182 && mouseX < leftPos + 206 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_vacuum"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_vacuum"), mouseX, mouseY);
 		if (mouseX > leftPos + 45 && mouseX < leftPos + 69 && mouseY > topPos + 65 && mouseY < topPos + 89)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_blood"), mouseX, mouseY);
+			this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_3.tooltip_blood"), mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/keepers_box_gui_part_3.png"), this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/keepers_box_gui_part_3.png"));
+		this.blit(ms, this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
 
 		RenderSystem.disableBlend();
 	}
@@ -103,7 +104,7 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
@@ -132,9 +133,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (LightStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_light_element", imagebutton_light_element);
@@ -146,9 +147,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (ShadowStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_shadow_element", imagebutton_shadow_element);
@@ -160,9 +161,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (SunStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_sun_element", imagebutton_sun_element);
@@ -174,9 +175,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (SpaceStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_space_element", imagebutton_space_element);
@@ -188,9 +189,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (MoonStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_moon_element", imagebutton_moon_element);
@@ -202,9 +203,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (VacuumStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_vacuum_element", imagebutton_vacuum_element);
@@ -216,9 +217,9 @@ public class KeepersBoxGUIPart3Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (BloodStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_blood_element", imagebutton_blood_element);

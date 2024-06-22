@@ -17,7 +17,7 @@ public class BatteryChargerClientTickProcedure {
 					return blockEntity.getPersistentData().getDouble(tag);
 				return -1;
 			}
-		}.getValue(world, BlockPos.containing(x, y, z), "craftingProgress") > 0) {
+		}.getValue(world, new BlockPos(x, y, z), "craftingProgress") > 0) {
 			if (Math.random() < 0.2) {
 				world.addParticle((SimpleParticleType) (PowerModParticleTypes.ENERGY_SPARK.get()), (x + 0.5), (y + 1), (z + 0.5), 0.5, 0.1, 0.5);
 				world.addParticle((SimpleParticleType) (PowerModParticleTypes.ENERGY_SPARK.get()), (x + 0.5), (y + 1), (z + 0.5), (-0.5), 0.1, 0.5);

@@ -18,10 +18,11 @@ import java.util.List;
 import com.esmods.keepersofthestonestwo.procedures.RechargeStoneTickEventProcedure;
 import com.esmods.keepersofthestonestwo.procedures.GetRechargeInfoProcedure;
 import com.esmods.keepersofthestonestwo.procedures.ExplosionStoneUseProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class ExplosionStoneItem extends Item {
 	public ExplosionStoneItem() {
-		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_STONES).stacksTo(1).fireResistant().rarity(Rarity.COMMON));
 	}
 
 	@Override

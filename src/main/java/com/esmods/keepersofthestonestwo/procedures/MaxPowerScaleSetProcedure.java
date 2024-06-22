@@ -25,7 +25,7 @@ public class MaxPowerScaleSetProcedure {
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}
-				if (entity instanceof Player _player && !_player.level().isClientSide())
+				if (entity instanceof Player _player && !_player.level.isClientSide())
 					_player.displayClientMessage(Component.literal(("Set maximum star points to " + Math.round(DoubleArgumentType.getDouble(arguments, "count")) + " for " + entityiterator.getDisplayName().getString())), false);
 			}
 		} catch (CommandSyntaxException e) {

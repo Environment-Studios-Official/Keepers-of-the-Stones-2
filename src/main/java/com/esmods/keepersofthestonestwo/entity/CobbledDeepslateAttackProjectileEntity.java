@@ -19,7 +19,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure;
@@ -46,7 +45,7 @@ public class CobbledDeepslateAttackProjectileEntity extends AbstractArrow implem
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -70,13 +69,13 @@ public class CobbledDeepslateAttackProjectileEntity extends AbstractArrow implem
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		CobbledDeepslateAttackKoghdaSnariadPopadaietVBlokProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
 	}
 
 	@Override
@@ -103,7 +102,7 @@ public class CobbledDeepslateAttackProjectileEntity extends AbstractArrow implem
 	}
 
 	public static CobbledDeepslateAttackProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		CobbledDeepslateAttackProjectileEntity entityarrow = new CobbledDeepslateAttackProjectileEntity(PowerModEntities.COBBLED_DEEPSLATE_ATTACK_PROJECTILE.get(), entity, entity.level());
+		CobbledDeepslateAttackProjectileEntity entityarrow = new CobbledDeepslateAttackProjectileEntity(PowerModEntities.COBBLED_DEEPSLATE_ATTACK_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -112,8 +111,8 @@ public class CobbledDeepslateAttackProjectileEntity extends AbstractArrow implem
 		entityarrow.setBaseDamage(5);
 		entityarrow.setKnockback(5);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

@@ -17,10 +17,11 @@ import java.util.List;
 
 import com.esmods.keepersofthestonestwo.procedures.MetalBatteryUseProcedure;
 import com.esmods.keepersofthestonestwo.procedures.MetalBatteryDescProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class MetalBatteryItem extends Item {
 	public MetalBatteryItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

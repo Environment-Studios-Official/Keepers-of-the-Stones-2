@@ -10,7 +10,7 @@ public class SolarSalvoKoghdaSnariadPopadaietVSushchnostProcedure {
 		if (entity == null)
 			return;
 		entity.setSecondsOnFire(5);
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+		if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 			_entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 100, 2));
 	}
 }

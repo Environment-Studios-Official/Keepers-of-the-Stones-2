@@ -10,6 +10,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.entity.Entity;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumItemsPowerLockedProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 import com.esmods.keepersofthestonestwo.init.PowerModItems;
 
 public class EnergiumAxeItem extends AxeItem {
@@ -38,7 +39,7 @@ public class EnergiumAxeItem extends AxeItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of(new ItemStack(PowerModItems.ENERGIUM_INGOT.get()));
 			}
-		}, 1, -3.2f, new Item.Properties());
+		}, 1, -3.2f, new Item.Properties().tab(PowerModTabs.TAB_ITEMS));
 	}
 
 	@Override

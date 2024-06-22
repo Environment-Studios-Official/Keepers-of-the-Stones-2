@@ -1,6 +1,8 @@
 {
   "pack": {
-    "pack_format": 15,
-    "description": "Keepers of the Stones II is a mod created as a continuation of the original version of the Keepers of the Stones mod. It adds 48 new elemental stones that can be used to improve the character's skills and powers."
+    "description": "power mod resources",
+    "pack_format": 9,
+    "forge:resource_pack_format": 9,
+    "forge:data_pack_format": 10
   }
 }

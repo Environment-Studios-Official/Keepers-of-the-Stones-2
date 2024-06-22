@@ -22,7 +22,7 @@ import com.esmods.keepersofthestonestwo.entity.PoisonDropProjectileEntity;
 
 public class PoisonBowItem extends Item {
 	public PoisonBowItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(null).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

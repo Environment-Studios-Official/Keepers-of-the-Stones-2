@@ -22,7 +22,7 @@ import com.esmods.keepersofthestonestwo.entity.RainDropProjectileEntity;
 
 public class RainBowItem extends Item {
 	public RainBowItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(null).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

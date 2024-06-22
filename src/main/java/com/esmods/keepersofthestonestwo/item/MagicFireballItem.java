@@ -19,7 +19,7 @@ import com.esmods.keepersofthestonestwo.entity.MagicFireballProjectileEntity;
 
 public class MagicFireballItem extends Item {
 	public MagicFireballItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(null).stacksTo(1).rarity(Rarity.COMMON));
 	}
 
 	@Override

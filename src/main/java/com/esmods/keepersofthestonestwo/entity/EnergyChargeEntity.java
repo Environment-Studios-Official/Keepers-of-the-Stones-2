@@ -19,7 +19,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergyChargeTickProcedure;
@@ -47,7 +46,7 @@ public class EnergyChargeEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -71,19 +70,19 @@ public class EnergyChargeEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		EnergyChargeExplodeProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		EnergyChargeExplodeProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		EnergyChargeExplodeProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		EnergyChargeExplodeProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		EnergyChargeTickProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		EnergyChargeTickProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -105,7 +104,7 @@ public class EnergyChargeEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	public static EnergyChargeEntity shoot(LivingEntity entity, LivingEntity target) {
-		EnergyChargeEntity entityarrow = new EnergyChargeEntity(PowerModEntities.ENERGY_CHARGE.get(), entity, entity.level());
+		EnergyChargeEntity entityarrow = new EnergyChargeEntity(PowerModEntities.ENERGY_CHARGE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -114,8 +113,8 @@ public class EnergyChargeEntity extends AbstractArrow implements ItemSupplier {
 		entityarrow.setBaseDamage(11);
 		entityarrow.setKnockback(0);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

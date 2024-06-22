@@ -21,7 +21,7 @@ import com.esmods.keepersofthestonestwo.procedures.GetRechargeInfoProcedure;
 
 public class DarknessStoneItem extends Item {
 	public DarknessStoneItem() {
-		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(null).stacksTo(1).fireResistant().rarity(Rarity.COMMON));
 	}
 
 	@Override

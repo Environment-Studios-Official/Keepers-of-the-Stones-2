@@ -86,7 +86,7 @@ public class FakeElementSetProcedure {
 						});
 					}
 				}
-				if (entity instanceof Player _player && !_player.level().isClientSide())
+				if (entity instanceof Player _player && !_player.level.isClientSide())
 					_player.displayClientMessage(Component.literal(("Fake element has been set under the wheel number " + Math.round(DoubleArgumentType.getDouble(arguments, "element_order")) + " with parameter "
 							+ StringArgumentType.getString(arguments, "element_name") + " for " + entityiterator.getDisplayName().getString())), false);
 			}

@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.Entity;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumItemsPowerLockedProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 import com.esmods.keepersofthestonestwo.init.PowerModItems;
 
 public class EnergiumSwordItem extends SwordItem {
@@ -38,7 +39,7 @@ public class EnergiumSwordItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of(new ItemStack(PowerModItems.ENERGIUM_INGOT.get()));
 			}
-		}, 3, -2.4f, new Item.Properties());
+		}, 3, -2.4f, new Item.Properties().tab(PowerModTabs.TAB_ITEMS));
 	}
 
 	@Override

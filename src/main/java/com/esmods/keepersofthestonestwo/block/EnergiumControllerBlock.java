@@ -5,6 +5,7 @@ import org.checkerframework.checker.units.qual.s;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,7 +35,7 @@ public class EnergiumControllerBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
 	public EnergiumControllerBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(6.75f, 5f).lightLevel(s -> (new Object() {
+		super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(6.75f, 5f).lightLevel(s -> (new Object() {
 			public int getLightLevel() {
 				if (s.getValue(BLOCKSTATE) == 1)
 					return 0;

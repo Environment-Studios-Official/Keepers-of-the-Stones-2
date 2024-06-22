@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.HashMap;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.esmods.keepersofthestonestwo.world.inventory.KeepersBoxGUIPart2Menu;
@@ -57,49 +57,50 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(ms);
+		super.render(ms, mouseX, mouseY, partialTicks);
+		this.renderTooltip(ms, mouseX, mouseY);
 		if (CreationStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 44 && mouseX < leftPos + 68 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_creation"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_creation"), mouseX, mouseY);
 		if (TimeStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 91 && mouseX < leftPos + 115 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_time"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_time"), mouseX, mouseY);
 		if (SoundStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 134 && mouseX < leftPos + 158 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_sound"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_sound"), mouseX, mouseY);
 		if (AirStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 182 && mouseX < leftPos + 206 && mouseY > topPos + 64 && mouseY < topPos + 88)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_air"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_air"), mouseX, mouseY);
 		if (TornadoStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 181 && mouseX < leftPos + 205 && mouseY > topPos + 101 && mouseY < topPos + 125)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_tornado"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_tornado"), mouseX, mouseY);
 		if (DestructionStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 43 && mouseX < leftPos + 67 && mouseY > topPos + 101 && mouseY < topPos + 125)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_creation1"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_creation1"), mouseX, mouseY);
 		if (TechnologyStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 68 && mouseX < leftPos + 92 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_technology"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_technology"), mouseX, mouseY);
 		if (TeleportationStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 67 && mouseX < leftPos + 91 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_teleportation"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_teleportation"), mouseX, mouseY);
 		if (MistStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 158 && mouseX < leftPos + 182 && mouseY > topPos + 65 && mouseY < topPos + 89)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_mist"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_mist"), mouseX, mouseY);
 		if (SpeedStoneCheckProcedure.execute(world))
 			if (mouseX > leftPos + 91 && mouseX < leftPos + 115 && mouseY > topPos + 102 && mouseY < topPos + 126)
-				guiGraphics.renderTooltip(font, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_speed"), mouseX, mouseY);
+				this.renderTooltip(ms, Component.translatable("gui.power.keepers_box_gui_part_2.tooltip_speed"), mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+	protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 
-		guiGraphics.blit(new ResourceLocation("power:textures/screens/keepers_box_gui_part_2.png"), this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
+		RenderSystem.setShaderTexture(0, new ResourceLocation("power:textures/screens/keepers_box_gui_part_2.png"));
+		this.blit(ms, this.leftPos + 5, this.topPos + -34, 0, 0, 240, 260, 240, 260);
 
 		RenderSystem.disableBlend();
 	}
@@ -119,7 +120,7 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 	}
 
 	@Override
@@ -148,9 +149,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (CreationStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_creation_element", imagebutton_creation_element);
@@ -162,9 +163,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (TimeStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_time_element", imagebutton_time_element);
@@ -176,9 +177,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (SoundStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_sound_element", imagebutton_sound_element);
@@ -190,9 +191,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (AirStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_air_element", imagebutton_air_element);
@@ -204,9 +205,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (TornadoStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_tornado_element", imagebutton_tornado_element);
@@ -218,9 +219,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (DestructionStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_destruction_element", imagebutton_destruction_element);
@@ -232,9 +233,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (TechnologyStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_technology_element", imagebutton_technology_element);
@@ -246,9 +247,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (TeleportationStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_teleportation_element", imagebutton_teleportation_element);
@@ -260,9 +261,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (MistStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_mist_element", imagebutton_mist_element);
@@ -274,9 +275,9 @@ public class KeepersBoxGUIPart2Screen extends AbstractContainerScreen<KeepersBox
 			}
 		}) {
 			@Override
-			public void render(GuiGraphics guiGraphics, int gx, int gy, float ticks) {
+			public void render(PoseStack ms, int gx, int gy, float ticks) {
 				if (SpeedStoneCheckProcedure.execute(world))
-					super.render(guiGraphics, gx, gy, ticks);
+					super.render(ms, gx, gy, ticks);
 			}
 		};
 		guistate.put("button:imagebutton_speed_element_highlighted", imagebutton_speed_element_highlighted);

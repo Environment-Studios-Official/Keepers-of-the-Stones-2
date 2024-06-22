@@ -41,7 +41,7 @@ public class OceanPassiveConduitProcedure {
 			if (entity.isInWater()) {
 				particleAmount = 8;
 				particleRadius = 2;
-				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 					_entity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 400, 0, false, false));
 			}
 		}

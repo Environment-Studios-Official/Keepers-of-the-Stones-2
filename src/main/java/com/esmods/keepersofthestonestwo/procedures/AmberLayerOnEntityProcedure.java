@@ -29,11 +29,11 @@ public class AmberLayerOnEntityProcedure {
 		if (entity == null)
 			return;
 		if (((LivingEntity) entity).getAttribute(PowerModAttributes.SEALEDINAMBER.get()).getValue() == 1) {
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 200, false, false));
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 200, false, false));
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 200, false, false));
 		}
 	}

@@ -1,8 +1,5 @@
 {
-  "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "power:energium_upgrade_smithing_template"
-  },
+  "type": "minecraft:smithing",
   "base": {
     "item": "power:depleted_energium_ingot"
   },

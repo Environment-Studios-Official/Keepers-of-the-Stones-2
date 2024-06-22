@@ -1,6 +1,7 @@
 
 package com.esmods.keepersofthestonestwo.block;
 
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
@@ -12,7 +13,7 @@ import net.minecraft.core.BlockPos;
 
 public class CopyriumBlockBlock extends Block {
 	public CopyriumBlockBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(5f).requiresCorrectToolForDrops());
+		super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f).requiresCorrectToolForDrops());
 	}
 
 	@Override

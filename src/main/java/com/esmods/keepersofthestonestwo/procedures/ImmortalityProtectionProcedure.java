@@ -36,7 +36,7 @@ public class ImmortalityProtectionProcedure {
 			if (event != null && event.isCancelable()) {
 				event.setCanceled(true);
 			}
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 4));
 			if (entity instanceof LivingEntity _entity)
 				_entity.removeEffect(PowerModMobEffects.IMMORTALITY.get());

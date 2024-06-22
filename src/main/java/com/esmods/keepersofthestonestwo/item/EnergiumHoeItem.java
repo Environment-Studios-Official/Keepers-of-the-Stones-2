@@ -10,6 +10,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.entity.Entity;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumItemsPowerLockedProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 import com.esmods.keepersofthestonestwo.init.PowerModItems;
 
 public class EnergiumHoeItem extends HoeItem {
@@ -38,7 +39,7 @@ public class EnergiumHoeItem extends HoeItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of(new ItemStack(PowerModItems.ENERGIUM_INGOT.get()));
 			}
-		}, 0, -1f, new Item.Properties());
+		}, 0, -1f, new Item.Properties().tab(PowerModTabs.TAB_ITEMS));
 	}
 
 	@Override

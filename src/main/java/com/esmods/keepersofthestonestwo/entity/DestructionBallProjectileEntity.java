@@ -19,7 +19,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.DestructionBallProjectileKoghdaSnariadPopadaietVSushchnostProcedure;
@@ -48,7 +47,7 @@ public class DestructionBallProjectileEntity extends AbstractArrow implements It
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -72,19 +71,19 @@ public class DestructionBallProjectileEntity extends AbstractArrow implements It
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		DestructionBallProjectileKoghdaSnariadPopadaietVSushchnostProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), entityHitResult.getEntity());
+		DestructionBallProjectileKoghdaSnariadPopadaietVSushchnostProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entityHitResult.getEntity());
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		DestructionBallProjectileKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		DestructionBallProjectileKoghdaSnariadPopadaietVBlokProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		DestructionBallProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		DestructionBallProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -106,7 +105,7 @@ public class DestructionBallProjectileEntity extends AbstractArrow implements It
 	}
 
 	public static DestructionBallProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		DestructionBallProjectileEntity entityarrow = new DestructionBallProjectileEntity(PowerModEntities.DESTRUCTION_BALL_PROJECTILE.get(), entity, entity.level());
+		DestructionBallProjectileEntity entityarrow = new DestructionBallProjectileEntity(PowerModEntities.DESTRUCTION_BALL_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -115,8 +114,8 @@ public class DestructionBallProjectileEntity extends AbstractArrow implements It
 		entityarrow.setBaseDamage(9);
 		entityarrow.setKnockback(2);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

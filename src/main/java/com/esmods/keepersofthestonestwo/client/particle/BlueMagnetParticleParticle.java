@@ -37,6 +37,7 @@ public class BlueMagnetParticleParticle extends TextureSheetParticle {
 		super(world, x, y, z);
 		this.spriteSet = spriteSet;
 		this.setSize(1f, 1f);
+
 		this.lifetime = 24;
 		this.gravity = 0f;
 		this.hasPhysics = false;

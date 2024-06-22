@@ -40,7 +40,7 @@ public class TornadoAxeItem extends AxeItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of();
 			}
-		}, 1, -2.91f, new Item.Properties().fireResistant());
+		}, 1, -2.91f, new Item.Properties().tab(null).fireResistant());
 	}
 
 	@Override

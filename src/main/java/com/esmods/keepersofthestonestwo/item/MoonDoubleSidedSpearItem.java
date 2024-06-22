@@ -37,7 +37,7 @@ public class MoonDoubleSidedSpearItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of();
 			}
-		}, 3, -2.8f, new Item.Properties().fireResistant());
+		}, 3, -2.8f, new Item.Properties().tab(null).fireResistant());
 	}
 
 	@Override

@@ -18,7 +18,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.ShadowSphereKazhdyiTikPriPoliotieSnariadaProcedure;
@@ -46,7 +45,7 @@ public class ShadowSphereEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -76,7 +75,7 @@ public class ShadowSphereEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	public void tick() {
 		super.tick();
-		ShadowSphereKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		ShadowSphereKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -98,7 +97,7 @@ public class ShadowSphereEntity extends AbstractArrow implements ItemSupplier {
 	}
 
 	public static ShadowSphereEntity shoot(LivingEntity entity, LivingEntity target) {
-		ShadowSphereEntity entityarrow = new ShadowSphereEntity(PowerModEntities.SHADOW_SPHERE.get(), entity, entity.level());
+		ShadowSphereEntity entityarrow = new ShadowSphereEntity(PowerModEntities.SHADOW_SPHERE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -107,8 +106,8 @@ public class ShadowSphereEntity extends AbstractArrow implements ItemSupplier {
 		entityarrow.setBaseDamage(9);
 		entityarrow.setKnockback(2);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

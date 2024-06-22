@@ -10,6 +10,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -43,7 +44,7 @@ public class EnergiumVaultBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
 	public EnergiumVaultBlock() {
-		super(BlockBehaviour.Properties.of()
+		super(BlockBehaviour.Properties.of(Material.METAL)
 				.sound(new ForgeSoundType(1.0f, 1.0f, () -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("power:backport.block.vault.break")),
 						() -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("power:backport.block.vault.step")), () -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("power:backport.block.vault.place")),
 						() -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.netherite_block.hit")), () -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.netherite_block.fall"))))
@@ -55,7 +56,7 @@ public class EnergiumVaultBlock extends Block implements EntityBlock {
 							return 12;
 						return 6;
 					}
-				}.getLightLevel())).requiresCorrectToolForDrops().noOcclusion().pushReaction(PushReaction.IGNORE).isRedstoneConductor((bs, br, bp) -> false));
+				}.getLightLevel())).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
@@ -100,6 +101,11 @@ public class EnergiumVaultBlock extends Block implements EntityBlock {
 
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+	}
+
+	@Override
+	public PushReaction getPistonPushReaction(BlockState state) {
+		return PushReaction.IGNORE;
 	}
 
 	@Override

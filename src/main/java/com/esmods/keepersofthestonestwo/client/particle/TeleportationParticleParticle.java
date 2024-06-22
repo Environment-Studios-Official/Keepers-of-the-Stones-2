@@ -37,6 +37,7 @@ public class TeleportationParticleParticle extends TextureSheetParticle {
 		super(world, x, y, z);
 		this.spriteSet = spriteSet;
 		this.setSize(1f, 1f);
+
 		this.lifetime = 16;
 		this.gravity = 0f;
 		this.hasPhysics = true;

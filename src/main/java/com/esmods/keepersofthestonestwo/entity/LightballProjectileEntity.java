@@ -18,7 +18,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
 import com.esmods.keepersofthestonestwo.procedures.LightballProjectileKoghdaSnariadPopadaietVSushchnostProcedure;
@@ -46,7 +45,7 @@ public class LightballProjectileEntity extends AbstractArrow implements ItemSupp
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -76,7 +75,7 @@ public class LightballProjectileEntity extends AbstractArrow implements ItemSupp
 	@Override
 	public void tick() {
 		super.tick();
-		LightballProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+		LightballProjectileKazhdyiTikPriPoliotieSnariadaProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
 		if (this.inGround)
 			this.discard();
 	}
@@ -98,7 +97,7 @@ public class LightballProjectileEntity extends AbstractArrow implements ItemSupp
 	}
 
 	public static LightballProjectileEntity shoot(LivingEntity entity, LivingEntity target) {
-		LightballProjectileEntity entityarrow = new LightballProjectileEntity(PowerModEntities.LIGHTBALL_PROJECTILE.get(), entity, entity.level());
+		LightballProjectileEntity entityarrow = new LightballProjectileEntity(PowerModEntities.LIGHTBALL_PROJECTILE.get(), entity, entity.level);
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
@@ -107,8 +106,8 @@ public class LightballProjectileEntity extends AbstractArrow implements ItemSupp
 		entityarrow.setBaseDamage(9);
 		entityarrow.setKnockback(2);
 		entityarrow.setCritArrow(false);
-		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+		entity.level.addFreshEntity(entityarrow);
+		entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}
 }

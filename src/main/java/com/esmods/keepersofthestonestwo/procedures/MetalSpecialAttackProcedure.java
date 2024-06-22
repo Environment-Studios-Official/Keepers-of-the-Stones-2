@@ -35,7 +35,7 @@ public class MetalSpecialAttackProcedure {
 				if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Blocks.IRON_BLOCK.asItem()) {
 					{
 						Entity _shootFrom = entity;
-						Level projectileLevel = _shootFrom.level();
+						Level projectileLevel = _shootFrom.level;
 						if (!projectileLevel.isClientSide()) {
 							Projectile _entityToSpawn = new Object() {
 								public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
@@ -67,7 +67,7 @@ public class MetalSpecialAttackProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.PLAYERS, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.PLAYERS, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.PLAYERS, 1, 1, false);
 						}
@@ -75,7 +75,7 @@ public class MetalSpecialAttackProcedure {
 				} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Blocks.GOLD_BLOCK.asItem()) {
 					{
 						Entity _shootFrom = entity;
-						Level projectileLevel = _shootFrom.level();
+						Level projectileLevel = _shootFrom.level;
 						if (!projectileLevel.isClientSide()) {
 							Projectile _entityToSpawn = new Object() {
 								public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
@@ -107,7 +107,7 @@ public class MetalSpecialAttackProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.NEUTRAL, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.break")), SoundSource.NEUTRAL, 1, 1, false);
 						}
@@ -115,7 +115,7 @@ public class MetalSpecialAttackProcedure {
 				} else {
 					{
 						Entity _shootFrom = entity;
-						Level projectileLevel = _shootFrom.level();
+						Level projectileLevel = _shootFrom.level;
 						if (!projectileLevel.isClientSide()) {
 							Projectile _entityToSpawn = new Object() {
 								public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
@@ -147,7 +147,7 @@ public class MetalSpecialAttackProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.break")), SoundSource.NEUTRAL, 1, 1);
+							_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.break")), SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.copper.break")), SoundSource.NEUTRAL, 1, 1, false);
 						}
@@ -158,7 +158,7 @@ public class MetalSpecialAttackProcedure {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 30) {
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.trident.throw")), SoundSource.PLAYERS, 1, 1);
+						_level.playSound(null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.trident.throw")), SoundSource.PLAYERS, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.trident.throw")), SoundSource.PLAYERS, 1, 1, false);
 					}
@@ -294,9 +294,9 @@ public class MetalSpecialAttackProcedure {
 		} else if (((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).attack).equals("metal_attack_3")) {
 			if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 80) {
 				if ((entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power >= 10) {
-					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 						_entity.addEffect(new MobEffectInstance(PowerModMobEffects.IRON_SKIN.get(), 300, 0, false, false));
-					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					if (entity instanceof LivingEntity _entity && !_entity.level.isClientSide())
 						_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300, 2, false, false));
 					{
 						double _setval = (entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).power - 80;

@@ -1,7 +1,7 @@
 
 package com.esmods.keepersofthestonestwo.block;
 
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos;
 
 public class CursedStoneBricksBlock extends Block {
 	public CursedStoneBricksBlock() {
-		super(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.TUFF).strength(2.5f, 3f));
+		super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.TUFF).strength(2.5f, 3f));
 	}
 
 	@Override

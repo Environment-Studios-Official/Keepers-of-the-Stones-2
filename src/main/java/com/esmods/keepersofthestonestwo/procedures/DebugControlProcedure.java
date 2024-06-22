@@ -21,7 +21,7 @@ public class DebugControlProcedure {
 				capability.syncPlayerVariables(entity);
 			});
 		}
-		if (entity instanceof Player _player && !_player.level().isClientSide())
+		if (entity instanceof Player _player && !_player.level.isClientSide())
 			_player.displayClientMessage(Component.literal(("Debug mode set is: " + (entity.getCapability(PowerModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new PowerModVariables.PlayerVariables())).debug)), false);
 	}
 }

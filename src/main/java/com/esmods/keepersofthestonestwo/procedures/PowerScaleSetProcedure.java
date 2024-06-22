@@ -25,7 +25,7 @@ public class PowerScaleSetProcedure {
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}
-				if (entity instanceof Player _player && !_player.level().isClientSide())
+				if (entity instanceof Player _player && !_player.level.isClientSide())
 					_player.displayClientMessage(Component.literal(("Set " + Math.round(DoubleArgumentType.getDouble(arguments, "count")) + " star points for " + entityiterator.getDisplayName().getString())), false);
 			}
 		} catch (CommandSyntaxException e) {

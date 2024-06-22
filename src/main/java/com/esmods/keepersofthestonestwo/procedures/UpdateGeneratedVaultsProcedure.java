@@ -17,7 +17,7 @@ public class UpdateGeneratedVaultsProcedure {
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END) {
-			execute(event, event.player.level(), event.player.getX(), event.player.getY(), event.player.getZ());
+			execute(event, event.player.level, event.player.getX(), event.player.getY(), event.player.getZ());
 		}
 	}
 
@@ -36,14 +36,14 @@ public class UpdateGeneratedVaultsProcedure {
 					double distanceSq = (xi * xi) / (double) (horizontalRadiusSphere * horizontalRadiusSphere) + (i * i) / (double) (verticalRadiusSphere * verticalRadiusSphere)
 							+ (zi * zi) / (double) (horizontalRadiusSphere * horizontalRadiusSphere);
 					if (distanceSq <= 1.0) {
-						if ((world.getBlockState(BlockPos.containing(x + xi, y + i, z + zi))).getBlock() == PowerModBlocks.ENERGIUM_VAULT.get()) {
+						if ((world.getBlockState(new BlockPos(x + xi, y + i, z + zi))).getBlock() == PowerModBlocks.ENERGIUM_VAULT.get()) {
 							if (!updated) {
-								world.scheduleTick(BlockPos.containing(x + xi, y + i, z + zi), world.getBlockState(BlockPos.containing(x + xi, y + i, z + zi)).getBlock(), 0);
+								world.scheduleTick(new BlockPos(x + xi, y + i, z + zi), world.getBlockState(new BlockPos(x + xi, y + i, z + zi)).getBlock(), 0);
 								updated = true;
 							}
-						} else if ((world.getBlockState(BlockPos.containing(x + xi, y + i, z + zi))).getBlock() == PowerModBlocks.CURSED_VAULT.get()) {
+						} else if ((world.getBlockState(new BlockPos(x + xi, y + i, z + zi))).getBlock() == PowerModBlocks.CURSED_VAULT.get()) {
 							if (!updated) {
-								world.scheduleTick(BlockPos.containing(x + xi, y + i, z + zi), world.getBlockState(BlockPos.containing(x + xi, y + i, z + zi)).getBlock(), 0);
+								world.scheduleTick(new BlockPos(x + xi, y + i, z + zi), world.getBlockState(new BlockPos(x + xi, y + i, z + zi)).getBlock(), 0);
 								updated = true;
 							}
 						}

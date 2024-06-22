@@ -7,10 +7,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.InteractionResult;
 
 import com.esmods.keepersofthestonestwo.procedures.EnergiumKeyOpenVaultProcedure;
+import com.esmods.keepersofthestonestwo.init.PowerModTabs;
 
 public class EnergiumKeyItem extends Item {
 	public EnergiumKeyItem() {
-		super(new Item.Properties().durability(11).rarity(Rarity.COMMON));
+		super(new Item.Properties().tab(PowerModTabs.TAB_ITEMS).durability(11).rarity(Rarity.COMMON));
 	}
 
 	@Override
