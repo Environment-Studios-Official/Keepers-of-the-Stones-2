@@ -1,0 +1,11 @@
+{
+  "_fv": 66,
+  "_type": "tab",
+  "definition": {
+    "name": "KotS: Mobs",
+    "icon": {
+      "value": "CUSTOM:EnergiumGolem.spawn_egg"
+    },
+    "showSearch": false
+  }
+}

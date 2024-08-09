@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "com.esmods.cpapi",
+        "artifact": "cpapi-v11"
+      },
+      "version": {
+        "range": "[0,)",
+        "artifactVersion": "11"
+      },
+      "path": "META-INF/jarjar/cpapi-v11.jar",
+      "isObfuscated": true
+    }
+  ]
+}

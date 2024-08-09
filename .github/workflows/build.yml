@@ -4,7 +4,12 @@ name: Build
 on:
   push:
     branches:
-      - "dev"
+      - "1.19.2-dev"
+      - "1.19.4-dev"
+      - "1.20.1-dev"
+      - "1.20.4-dev"
+      - "1.20.6-dev"
+      - "1.21-dev"
 
 jobs:
   build:

@@ -1,0 +1,51 @@
+{
+  "_fv": 66,
+  "_type": "overlay",
+  "definition": {
+    "priority": "HIGHEST",
+    "components": [
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_power_scale",
+          "text": {
+            "fixedValue": "0",
+            "name": "GetPowerScale"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "GetActive"
+          },
+          "anchorPoint": "TOP_LEFT",
+          "x": 31,
+          "y": 35
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "star_points_overlay.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "GetActive"
+          },
+          "anchorPoint": "TOP_LEFT",
+          "x": 2,
+          "y": 28
+        }
+      }
+    ],
+    "baseTexture": "",
+    "overlayTarget": "Ingame",
+    "gridSettings": {
+      "sx": 16,
+      "sy": 16,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": true
+    }
+  }
+}

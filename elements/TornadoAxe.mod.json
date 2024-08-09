@@ -1,0 +1,34 @@
+{
+  "_fv": 66,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Axe",
+    "renderType": 1,
+    "blockingRenderType": 0,
+    "texture": "tornado_axe",
+    "customModelName": "tornado_axe:default",
+    "blockingModelName": "Normal blocking",
+    "name": "Tornado Axe",
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "creativeTabs": [],
+    "efficiency": 12.0,
+    "attackSpeed": 1.09,
+    "enchantability": 0,
+    "damageVsEntity": 11.88,
+    "usageCount": 0,
+    "glowCondition": {
+      "fixedValue": true
+    },
+    "repairItems": [],
+    "immuneToFire": true,
+    "blockDropsTier": "NETHERITE",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false,
+    "onItemInInventoryTick": {
+      "name": "TornadoAxeKazhdyiTikVInvientarie"
+    }
+  }
+}
